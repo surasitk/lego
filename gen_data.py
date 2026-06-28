@@ -9,7 +9,6 @@ FIGS = [
     dict(th="บัซ ไลต์เยียร์", en="Buzz Lightyear", series="LEGO Toy Story", set_no=None, date="2010", sort=20100101, cat="licensed", bl="toy004", conf="fair", emoji="🚀"),
     dict(th="วู้ดดี้", en="Woody", series="LEGO Toy Story", set_no=None, date="2010", sort=20100102, cat="licensed", bl="toy003", conf="sure", emoji="🤠"),
     dict(th="ฟาโรห์", en="Pharaoh", series="Series 2", set_no="8684", date="2010", sort=20100901, cat="fantasy", bl="col032", conf="fair", emoji="🏺"),
-    dict(th="แกลดิเอเตอร์", en="Gladiator", series="Series 5", set_no="8805", date="2011", sort=20110901, cat="fantasy", bl="col066", conf="fair", emoji="⚔️"),
     dict(th="ราชาสมุทร / โพไซดอน", en="Ocean King (Poseidon)", series="Series 7", set_no="8831", date="พ.ค. 2012", sort=20120501, cat="fantasy", bl="col101", conf="sure", emoji="🔱"),
     dict(th="ชุดไก่", en="Chicken Suit Guy", series="Series 9", set_no="71000", date="ม.ค. 2013", sort=20130101, cat="animal", bl="col135", conf="sure", emoji="🐔"),
     dict(th="พ่อมด", en="Wizard", series="Series 12", set_no="71007", date="2014", sort=20140101, cat="fantasy", bl="col179", conf="sure", emoji="🧙"),
@@ -42,14 +41,17 @@ FIGS = [
     dict(th="อัศวินแวมไพร์", en="Vampire Knight", series="Series 25", set_no="71045", date="2024", sort=20240101, cat="fantasy", bl="col426", conf="sure", emoji="🧛"),
     dict(th="ราชาอัศวินม้า", en="Horse Knight King", series="Castle (set 31168)", set_no="31168", date="2025", sort=20250801, cat="fantasy", bl="cas592", conf="sure", emoji="🐎"),
     dict(th="แบทแมนเงือก", en="Mermaid Batman", series="The LEGO Batman Movie Series 2", set_no="71020", date="2018", sort=20180105, cat="licensed", bl="coltlbm29", conf="sure", emoji="🧜"),
-    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="LEGO Exclusive", set_no=None, date="2023", sort=20230601, cat="food", bl="hol355x", conf="sure", emoji="🍓"),
+    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230601, cat="food", bl="hol355x", conf="sure", emoji="🍓"),
+    dict(th="เฮอร์คิวลิส", en="Hercules", series="Disney Series 2", set_no="71024", date="2019", sort=20190215, cat="licensed", bl="dis037", conf="sure", emoji="🏛️"),
+    dict(th="ชุดสีเทียนม่วงแดง", en="Magenta Crayon Costume Guy", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230610, cat="craft", bl=None, conf="sure", emoji="🖍️"),
+    dict(th="นายกฯ ชุดข้าวโพด (Solomon Fleck)", en="Mayor Solomon Fleck (Corn Cob)", series="LEGO City", set_no="cty1222", date="2020", sort=20200601, cat="food", bl="cty1222", conf="sure", emoji="🌽"),
+    dict(th="ชุดเค้ก/พาย", en="Cake / Pie Costume Guy", series="Build-A-Minifigure", set_no="BAM 2022", date="2022", sort=20220115, cat="food", bl="hol296", conf="sure", emoji="🥧"),
+    dict(th="ปาร์ตี้ บานาน่า", en="Party Banana Guy", series="Party Banana Juice Bar", set_no="5005250", date="2018", sort=20181001, cat="food", bl="col330", conf="sure", emoji="🍌"),
     dict(th="ชุดนกยูง", en="Peacock Costume", series="Series 28", set_no="71051", date="ม.ค. 2026", sort=20260101, cat="animal", bl="col461", conf="sure", emoji="🦚"),
 ]
 
 # Unidentified / needs close-up. th(desc), note, emoji
-UNSURE = [
-    ("นักรบนก/อินทรี (แขนขนนก)", "อาจเป็นไลน์ Chima หรือชุดนก — ส่งรูปใกล้ๆ มาช่วยฟันธงได้", "🦅"),
-]
+UNSURE = []
 
 rows = []
 for f in FIGS:
