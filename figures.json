@@ -645,6 +645,36 @@
     "note": null
   },
   {
+    "name_th": "กัปตันโจรสลัด (Redbeard)",
+    "name_en": "Pirate Captain (Redbeard)",
+    "series": "Pirates",
+    "set_no": null,
+    "release_date": "1989",
+    "release_sort": 19890101,
+    "category": "pirate",
+    "bricklink_id": "pi055",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/pi055.png",
+    "confidence": "sure",
+    "emoji": "🏴‍☠️",
+    "identified": true,
+    "note": null
+  },
+  {
+    "name_th": "ทหารอิมพีเรียล (Bluecoat)",
+    "name_en": "Imperial Soldier",
+    "series": "Pirates",
+    "set_no": null,
+    "release_date": "1996",
+    "release_sort": 19960101,
+    "category": "pirate",
+    "bricklink_id": "pi061",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/pi061.png",
+    "confidence": "sure",
+    "emoji": "🪖",
+    "identified": true,
+    "note": null
+  },
+  {
     "name_th": "ชุดนกยูง",
     "name_en": "Peacock Costume",
     "series": "Series 28",

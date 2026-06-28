@@ -54,4 +54,6 @@ insert into public.minifigures (name_th, name_en, series, set_no, release_date, 
   ('ปาร์ตี้ บานาน่า', 'Party Banana Guy', 'Party Banana Juice Bar', '5005250', '2018', 20181001, 'food', 'col330', 'https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/col330.png', 'sure', '🍌', true, NULL),
   ('ราชินีอียิปต์', 'Egyptian Queen', 'Series 5', '8805', '2011', 20110902, 'myth', 'col078', 'https://img.bricklink.com/ItemImage/MN/0/col078.png', 'sure', '🐍', true, NULL),
   ('ราชินี', 'Queen', 'Series 15', '71011', 'Jan 2016', 20160103, 'castle', 'col243', 'https://img.bricklink.com/ItemImage/MN/0/col243.png', 'sure', '👸', true, NULL),
+  ('กัปตันโจรสลัด (Redbeard)', 'Pirate Captain (Redbeard)', 'Pirates', NULL, '1989', 19890101, 'pirate', 'pi055', 'https://img.bricklink.com/ItemImage/MN/0/pi055.png', 'sure', '🏴‍☠️', true, NULL),
+  ('ทหารอิมพีเรียล (Bluecoat)', 'Imperial Soldier', 'Pirates', NULL, '1996', 19960101, 'pirate', 'pi061', 'https://img.bricklink.com/ItemImage/MN/0/pi061.png', 'sure', '🪖', true, NULL),
   ('ชุดนกยูง', 'Peacock Costume', 'Series 28', '71051', 'Jan 2026', 20260101, 'animal', 'col461', 'https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/col461.png', 'sure', '🦚', true, NULL);

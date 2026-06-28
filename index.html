@@ -265,6 +265,7 @@ const CAT = {
   castle: {label:"Castle & Knights",    color:"#a6791e"},
   myth:   {label:"Mythology & Fantasy", color:"#0a6fd1"},
   pop:    {label:"Pop Culture",         color:"#e11d2a"},
+  pirate: {label:"Pirates",             color:"#0d9488"},
   other:  {label:"Other",               color:"#7d44cf"},
 };
 
@@ -301,7 +302,9 @@ async function load(){
   // Extra figures (merged in case the DB hasn't been re-seeded yet)
   const EXTRA=[
     {name_en:"Egyptian Queen",name_th:"ราชินีอียิปต์",series:"Series 5",set_no:"8805",release_date:"2011",release_sort:20110902,category:"myth",bricklink_id:"col078",image_url:"https://img.bricklink.com/ItemImage/MN/0/col078.png",emoji:"🐍",identified:true},
-    {name_en:"Queen",name_th:"ราชินี",series:"Series 15",set_no:"71011",release_date:"Jan 2016",release_sort:20160103,category:"castle",bricklink_id:"col243",image_url:"https://img.bricklink.com/ItemImage/MN/0/col243.png",emoji:"👸",identified:true}
+    {name_en:"Queen",name_th:"ราชินี",series:"Series 15",set_no:"71011",release_date:"Jan 2016",release_sort:20160103,category:"castle",bricklink_id:"col243",image_url:"https://img.bricklink.com/ItemImage/MN/0/col243.png",emoji:"👸",identified:true},
+    {name_en:"Pirate Captain (Redbeard)",name_th:"กัปตันโจรสลัด (Redbeard)",series:"Pirates",set_no:null,release_date:"1989",release_sort:19890101,category:"pirate",bricklink_id:"pi055",image_url:"https://img.bricklink.com/ItemImage/MN/0/pi055.png",emoji:"🏴‍☠️",identified:true},
+    {name_en:"Imperial Soldier",name_th:"ทหารอิมพีเรียล (Bluecoat)",series:"Pirates",set_no:null,release_date:"1996",release_sort:19960101,category:"pirate",bricklink_id:"pi061",image_url:"https://img.bricklink.com/ItemImage/MN/0/pi061.png",emoji:"🪖",identified:true}
   ];
   const _have=new Set(ALL.map(f=>f.name_en));
   EXTRA.forEach(e=>{ if(!_have.has(e.name_en)) ALL.push(e); });
