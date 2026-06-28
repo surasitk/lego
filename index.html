@@ -144,10 +144,18 @@
   .disclaimer{max-width:78ch;margin:0 auto;font-size:12.5px;color:#717b88;line-height:1.65}
   .disclaimer a{font-weight:500}
 
-  /* ---------- Loading / empty ---------- */
-  .loading{padding:64px 0;text-align:center;color:var(--muted);font-weight:500}
-  .spin{width:34px;height:34px;border:3px solid var(--line2);border-top-color:var(--blue);border-radius:50%;animation:s .8s linear infinite;margin:0 auto 14px}
-  @keyframes s{to{transform:rotate(360deg)}}
+  /* ---------- Loading (LEGO car) / empty ---------- */
+  .loading{padding:62px 0 70px;text-align:center;color:var(--muted);font-weight:600}
+  .lego-loader{width:210px;height:auto;margin:0 auto 14px;display:block;overflow:visible}
+  .lego-loader .car{animation:carbob .45s ease-in-out infinite alternate}
+  @keyframes carbob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+  .lego-loader .wheel{transform-box:fill-box;transform-origin:center;animation:wheelspin .55s linear infinite}
+  @keyframes wheelspin{to{transform:rotate(360deg)}}
+  .lego-loader .road{stroke:#cbd3df;stroke-width:5;stroke-linecap:round;stroke-dasharray:16 14;animation:roadmove .35s linear infinite}
+  @keyframes roadmove{to{stroke-dashoffset:-30}}
+  .load-text{font-family:"Fredoka",sans-serif;font-size:15.5px;color:var(--muted)}
+  .load-text b{color:var(--ink)}
+  .spin{width:34px;height:34px;border:3px solid var(--line2);border-top-color:var(--blue);border-radius:50%;animation:wheelspin .8s linear infinite;margin:0 auto 14px}
 
   .col-hide{}
   @media (max-width:760px){
@@ -200,7 +208,32 @@
 
 <main class="wrap">
   <div class="count" id="count"></div>
-  <div id="content"><div class="loading"><div class="spin"></div>Loading collection…</div></div>
+  <div id="content"><div class="loading">
+    <svg class="lego-loader" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" aria-label="Loading">
+      <line class="road" x1="8" y1="122" x2="212" y2="122"/>
+      <g class="car">
+        <rect x="34" y="64" width="132" height="34" rx="8" fill="#e3000b"/>
+        <rect x="60" y="46" width="74" height="24" rx="7" fill="#e3000b"/>
+        <rect x="68" y="50" width="58" height="16" rx="3" fill="#9bd4f0"/>
+        <ellipse cx="76" cy="45" rx="6" ry="4" fill="#e3000b"/><ellipse cx="76" cy="43.4" rx="5" ry="2.4" fill="#ff5c4d"/>
+        <ellipse cx="97" cy="45" rx="6" ry="4" fill="#e3000b"/><ellipse cx="97" cy="43.4" rx="5" ry="2.4" fill="#ff5c4d"/>
+        <ellipse cx="118" cy="45" rx="6" ry="4" fill="#e3000b"/><ellipse cx="118" cy="43.4" rx="5" ry="2.4" fill="#ff5c4d"/>
+        <rect x="38" y="80" width="124" height="3" rx="1.5" fill="#b8000a"/>
+        <circle cx="162" cy="82" r="4.5" fill="#ffd500"/>
+      </g>
+      <g class="wheel">
+        <circle cx="72" cy="100" r="18" fill="#1b2330"/><circle cx="72" cy="100" r="10" fill="#cfd5dd"/>
+        <rect x="71" y="90" width="2" height="20" fill="#9aa4b2"/><rect x="62" y="99" width="20" height="2" fill="#9aa4b2"/>
+        <circle cx="72" cy="100" r="3.5" fill="#ffd500"/>
+      </g>
+      <g class="wheel">
+        <circle cx="132" cy="100" r="18" fill="#1b2330"/><circle cx="132" cy="100" r="10" fill="#cfd5dd"/>
+        <rect x="131" y="90" width="2" height="20" fill="#9aa4b2"/><rect x="122" y="99" width="20" height="2" fill="#9aa4b2"/>
+        <circle cx="132" cy="100" r="3.5" fill="#ffd500"/>
+      </g>
+    </svg>
+    <div class="load-text">Building your <b>LEGO</b> collection…</div>
+  </div></div>
 </main>
 
 <footer class="wrap">
