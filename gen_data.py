@@ -69,6 +69,20 @@ for desc, guess, emoji in UNSURE:
         "emoji": emoji, "identified": False, "note": guess,
     })
 
+# --- Category remap (content-based, grounded in LEGO theme structure) ---
+CATMAP = {
+    "animal": ["Chicken Suit Guy","Penguin Boy","Shark Suit Guy","Giraffe Guy","Llama Costume Girl","Turkey Costume","Chicken Suit Boy","Peacock Costume"],
+    "food":   ["Banana Guy","Hot Dog Man","Corn Cob Guy","Cactus Girl","Watermelon Dude","Pizza Costume Guy","Peapod Costume Girl","Popcorn Costume","Strawberry Shortcake Girl","Cake / Pie Costume Guy","Party Banana Guy","Mayor Solomon Fleck (Corn Cob)"],
+    "castle": ["Classic King","Horse Knight King","Vampire Knight"],
+    "myth":   ["Pharaoh","Wizard","Ocean King (Poseidon)","Hercules","Hades","Dragon Suit Guy","Green Dragon Costume"],
+    "pop":    ["Buzz Lightyear","Woody","Batman — Batman Returns 1992","Catman","Mermaid Batman","James Bond (007)","Dominic Toretto","Brian O'Conner","President Business"],
+    "other":  ["Firework Guy","Crayon Girl","Magenta Crayon Costume Guy"],
+}
+_n2c = {n: c for c, ns in CATMAP.items() for n in ns}
+for r in rows:
+    if r["name_en"] in _n2c:
+        r["category"] = _n2c[r["name_en"]]
+
 with open("figures.json", "w", encoding="utf-8") as f:
     json.dump(rows, f, ensure_ascii=False, indent=2)
 

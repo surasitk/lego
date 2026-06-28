@@ -190,8 +190,8 @@
         <option value="series">Series</option>
       </select>
       <div class="seg" id="view" role="tablist">
-        <button data-v="table" class="on">▤ Table</button>
-        <button data-v="grid">▦ Gallery</button>
+        <button data-v="table">▤ Table</button>
+        <button data-v="grid" class="on">▦ Gallery</button>
       </div>
     </div>
     <div class="chips" id="chips"></div>
@@ -227,14 +227,15 @@ const SUPABASE_URL = "https://qmmopgyevfuztpqaynww.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_kGOwN1irW29qdPoTl6DNcQ_CIVLpe5v";
 
 const CAT = {
-  animal:  {label:"Animal",            color:"#1aa053"},
-  food:    {label:"Food",              color:"#f07a17"},
-  fantasy: {label:"Fantasy / History", color:"#0a6fd1"},
-  licensed:{label:"Licensed",          color:"#e11d2a"},
-  craft:   {label:"Other",             color:"#7d44cf"},
+  animal: {label:"Animal",              color:"#1aa053"},
+  food:   {label:"Food",                color:"#f07a17"},
+  castle: {label:"Castle & Knights",    color:"#a6791e"},
+  myth:   {label:"Mythology & Fantasy", color:"#0a6fd1"},
+  pop:    {label:"Pop Culture",         color:"#e11d2a"},
+  other:  {label:"Other",               color:"#7d44cf"},
 };
 
-let ALL=[], view="table", cat="all", sortBy="year-asc", query="";
+let ALL=[], view="grid", cat="all", sortBy="year-asc", query="";
 
 const blUrl = f => f.bricklink_id
   ? `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${encodeURIComponent(f.bricklink_id)}`
@@ -259,6 +260,9 @@ async function load(){
   }
   if(!data){ try{data=await(await fetch('./figures.json')).json();}catch(e){document.getElementById('content').innerHTML='<div class="loading">Could not load data.</div>';return;} }
   ALL=data.filter(f=>f.identified);
+  // Content-based category normalization (resilient to DB sync)
+  const N2C={"Chicken Suit Guy":"animal","Penguin Boy":"animal","Shark Suit Guy":"animal","Giraffe Guy":"animal","Llama Costume Girl":"animal","Turkey Costume":"animal","Chicken Suit Boy":"animal","Peacock Costume":"animal","Banana Guy":"food","Hot Dog Man":"food","Corn Cob Guy":"food","Cactus Girl":"food","Watermelon Dude":"food","Pizza Costume Guy":"food","Peapod Costume Girl":"food","Popcorn Costume":"food","Strawberry Shortcake Girl":"food","Cake / Pie Costume Guy":"food","Party Banana Guy":"food","Mayor Solomon Fleck (Corn Cob)":"food","Classic King":"castle","Horse Knight King":"castle","Vampire Knight":"castle","Pharaoh":"myth","Wizard":"myth","Ocean King (Poseidon)":"myth","Hercules":"myth","Hades":"myth","Dragon Suit Guy":"myth","Green Dragon Costume":"myth","Buzz Lightyear":"pop","Woody":"pop","Batman — Batman Returns 1992":"pop","Catman":"pop","Mermaid Batman":"pop","James Bond (007)":"pop","Dominic Toretto":"pop","Brian O'Conner":"pop","President Business":"pop","Firework Guy":"other","Crayon Girl":"other","Magenta Crayon Costume Guy":"other"};
+  ALL.forEach(f=>{ if(N2C[f.name_en]) f.category=N2C[f.name_en]; });
   document.getElementById('live').classList.toggle('on',live);
   document.getElementById('srcText').textContent=live?'Live from Supabase':'Loaded from static data';
   stats(); chips(); render();
