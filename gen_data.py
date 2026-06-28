@@ -2,7 +2,7 @@
 """Generate schema.sql (Supabase) and figures.json from the canonical dataset."""
 import json
 
-BL = "https://img.bricklink.com/ItemImage/MN/0/{}.png"
+BL = "https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/{}.png"
 
 # dict keys: th, en, series, set_no, date, sort, cat, bl, conf, emoji
 FIGS = [
@@ -41,9 +41,9 @@ FIGS = [
     dict(th="อัศวินแวมไพร์", en="Vampire Knight", series="Series 25", set_no="71045", date="2024", sort=20240101, cat="fantasy", bl="col426", conf="sure", emoji="🧛"),
     dict(th="ราชาอัศวินม้า", en="Horse Knight King", series="Castle (set 31168)", set_no="31168", date="2025", sort=20250801, cat="fantasy", bl="cas592", conf="sure", emoji="🐎"),
     dict(th="แบทแมนเงือก", en="Mermaid Batman", series="The LEGO Batman Movie Series 2", set_no="71020", date="2018", sort=20180105, cat="licensed", bl="coltlbm29", conf="sure", emoji="🧜"),
-    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230601, cat="food", bl="hol355x", conf="sure", emoji="🍓"),
+    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230601, cat="food", bl="hol355x", img=None, conf="sure", emoji="🍓"),
     dict(th="เฮอร์คิวลิส", en="Hercules", series="Disney Series 2", set_no="71024", date="2019", sort=20190215, cat="licensed", bl="dis037", conf="sure", emoji="🏛️"),
-    dict(th="ชุดสีเทียนม่วงแดง", en="Magenta Crayon Costume Guy", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230610, cat="craft", bl=None, conf="sure", emoji="🖍️"),
+    dict(th="ชุดสีเทียนม่วงแดง", en="Magenta Crayon Costume Guy", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230610, cat="craft", bl=None, img="https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/magenta-crayon.webp", conf="sure", emoji="🖍️"),
     dict(th="นายกฯ ชุดข้าวโพด (Solomon Fleck)", en="Mayor Solomon Fleck (Corn Cob)", series="LEGO City", set_no="cty1222", date="2020", sort=20200601, cat="food", bl="cty1222", conf="sure", emoji="🌽"),
     dict(th="ชุดเค้ก/พาย", en="Cake / Pie Costume Guy", series="Build-A-Minifigure", set_no="BAM 2022", date="2022", sort=20220115, cat="food", bl="hol296", conf="sure", emoji="🥧"),
     dict(th="ปาร์ตี้ บานาน่า", en="Party Banana Guy", series="Party Banana Juice Bar", set_no="5005250", date="2018", sort=20181001, cat="food", bl="col330", conf="sure", emoji="🍌"),
@@ -58,7 +58,7 @@ for f in FIGS:
     rows.append({
         "name_th": f["th"], "name_en": f["en"], "series": f["series"], "set_no": f["set_no"],
         "release_date": f["date"], "release_sort": f["sort"], "category": f["cat"],
-        "bricklink_id": f["bl"], "image_url": BL.format(f["bl"]) if f["bl"] else None,
+        "bricklink_id": f["bl"], "image_url": (f["img"] if "img" in f else (BL.format(f["bl"]) if f["bl"] else None)),
         "confidence": f["conf"], "emoji": f["emoji"], "identified": True, "note": None,
     })
 for desc, guess, emoji in UNSURE:
