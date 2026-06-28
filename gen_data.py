@@ -41,7 +41,7 @@ FIGS = [
     dict(th="อัศวินแวมไพร์", en="Vampire Knight", series="Series 25", set_no="71045", date="2024", sort=20240101, cat="fantasy", bl="col426", conf="sure", emoji="🧛"),
     dict(th="ราชาอัศวินม้า", en="Horse Knight King", series="Castle (set 31168)", set_no="31168", date="2025", sort=20250801, cat="fantasy", bl="cas592", conf="sure", emoji="🐎"),
     dict(th="แบทแมนเงือก", en="Mermaid Batman", series="The LEGO Batman Movie Series 2", set_no="71020", date="2018", sort=20180105, cat="licensed", bl="coltlbm29", conf="sure", emoji="🧜"),
-    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230601, cat="food", bl="hol355x", img=None, conf="sure", emoji="🍓"),
+    dict(th="สาวชุดสตรอว์เบอร์รีเค้ก", en="Strawberry Shortcake Girl", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230601, cat="food", bl="hol355x", img="https://studbee.com/cdn/shop/files/57_c15803c7-a44f-4843-a5ab-619a57b56c46.jpg", conf="sure", emoji="🍓"),
     dict(th="เฮอร์คิวลิส", en="Hercules", series="Disney Series 2", set_no="71024", date="2019", sort=20190215, cat="licensed", bl="dis037", conf="sure", emoji="🏛️"),
     dict(th="ชุดสีเทียนม่วงแดง", en="Magenta Crayon Costume Guy", series="Build-A-Minifigure", set_no="BAM 2023", date="2023", sort=20230610, cat="craft", bl=None, img="https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/magenta-crayon.webp", conf="sure", emoji="🖍️"),
     dict(th="นายกฯ ชุดข้าวโพด (Solomon Fleck)", en="Mayor Solomon Fleck (Corn Cob)", series="LEGO City", set_no="cty1222", date="2020", sort=20200601, cat="food", bl="cty1222", conf="sure", emoji="🌽"),
