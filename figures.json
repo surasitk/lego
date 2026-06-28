@@ -615,6 +615,36 @@
     "note": null
   },
   {
+    "name_th": "ราชินีอียิปต์",
+    "name_en": "Egyptian Queen",
+    "series": "Series 5",
+    "set_no": "8805",
+    "release_date": "2011",
+    "release_sort": 20110902,
+    "category": "myth",
+    "bricklink_id": "col078",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col078.png",
+    "confidence": "sure",
+    "emoji": "🐍",
+    "identified": true,
+    "note": null
+  },
+  {
+    "name_th": "ราชินี",
+    "name_en": "Queen",
+    "series": "Series 15",
+    "set_no": "71011",
+    "release_date": "Jan 2016",
+    "release_sort": 20160103,
+    "category": "castle",
+    "bricklink_id": "col243",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col243.png",
+    "confidence": "sure",
+    "emoji": "👸",
+    "identified": true,
+    "note": null
+  },
+  {
     "name_th": "ชุดนกยูง",
     "name_en": "Peacock Costume",
     "series": "Series 28",

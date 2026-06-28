@@ -298,6 +298,13 @@ async function load(){
   ALL.forEach(f=>{ if(N2C[f.name_en]) f.category=N2C[f.name_en]; });
   const IMG={"Strawberry Shortcake Girl":"https://i.ebayimg.com/images/g/xiIAAOSwQKtoGRgo/s-l1600.jpg"};
   ALL.forEach(f=>{ if(IMG[f.name_en]) f.image_url=IMG[f.name_en]; });
+  // Extra figures (merged in case the DB hasn't been re-seeded yet)
+  const EXTRA=[
+    {name_en:"Egyptian Queen",name_th:"ราชินีอียิปต์",series:"Series 5",set_no:"8805",release_date:"2011",release_sort:20110902,category:"myth",bricklink_id:"col078",image_url:"https://img.bricklink.com/ItemImage/MN/0/col078.png",emoji:"🐍",identified:true},
+    {name_en:"Queen",name_th:"ราชินี",series:"Series 15",set_no:"71011",release_date:"Jan 2016",release_sort:20160103,category:"castle",bricklink_id:"col243",image_url:"https://img.bricklink.com/ItemImage/MN/0/col243.png",emoji:"👸",identified:true}
+  ];
+  const _have=new Set(ALL.map(f=>f.name_en));
+  EXTRA.forEach(e=>{ if(!_have.has(e.name_en)) ALL.push(e); });
   document.getElementById('live').classList.toggle('on',live);
   document.getElementById('srcText').textContent=live?'Live from Supabase':'Loaded from static data';
   stats(); chips(); render();

@@ -47,6 +47,8 @@ FIGS = [
     dict(th="นายกฯ ชุดข้าวโพด (Solomon Fleck)", en="Mayor Solomon Fleck (Corn Cob)", series="LEGO City", set_no="cty1222", date="2020", sort=20200601, cat="food", bl="cty1222", conf="sure", emoji="🌽"),
     dict(th="ชุดเค้ก/พาย", en="Cake / Pie Costume Guy", series="Build-A-Minifigure", set_no="BAM 2022", date="2022", sort=20220115, cat="food", bl="hol296", conf="sure", emoji="🥧"),
     dict(th="ปาร์ตี้ บานาน่า", en="Party Banana Guy", series="Party Banana Juice Bar", set_no="5005250", date="2018", sort=20181001, cat="food", bl="col330", conf="sure", emoji="🍌"),
+    dict(th="ราชินีอียิปต์", en="Egyptian Queen", series="Series 5", set_no="8805", date="2011", sort=20110902, cat="myth", bl="col078", img="https://img.bricklink.com/ItemImage/MN/0/col078.png", conf="sure", emoji="🐍"),
+    dict(th="ราชินี", en="Queen", series="Series 15", set_no="71011", date="Jan 2016", sort=20160103, cat="castle", bl="col243", img="https://img.bricklink.com/ItemImage/MN/0/col243.png", conf="sure", emoji="👸"),
     dict(th="ชุดนกยูง", en="Peacock Costume", series="Series 28", set_no="71051", date="Jan 2026", sort=20260101, cat="animal", bl="col461", conf="sure", emoji="🦚"),
 ]
 
