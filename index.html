@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJHMF9R46R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LJHMF9R46R');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>My LEGO Minifigure Collection</title>
 <meta name="description" content="A personal LEGO minifigure collection — sorted by release year, with official images shown inline.">
@@ -291,7 +299,7 @@ function tableHTML(list){
     return `<tr data-i="${i}">
       <td class="idx">${i+1}</td>
       <td><div class="thumb">${pic(f)}</div></td>
-      <td><div class="nm">${f.name_en||f.name_th}<small>${f.name_en?f.name_th:''}</small></div></td>
+      <td><div class="nm">${f.name_en||f.name_th}</div></td>
       <td><span class="series-tag" style="color:${c.color};background:${c.color}18">${f.series||'—'}</span>${f.set_no?`<span class="setno">${f.set_no}</span>`:''}</td>
       <td class="date col-hide">${f.release_date||'—'}</td>
       <td class="col-hide"><span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
@@ -307,7 +315,7 @@ function gridHTML(list){
     return `<div class="g-card" data-i="${i}">
       <div class="g-thumb"><span class="yr">${yearOf(f)}</span>${pic(f,1)}</div>
       <div class="g-body">
-        <div class="g-name">${f.name_en||f.name_th}<small>${f.name_en?f.name_th:''}</small></div>
+        <div class="g-name">${f.name_en||f.name_th}</div>
         <div class="g-meta"><span class="series-tag" style="color:${c.color};background:${c.color}18">${f.series||'—'}</span>${f.set_no?`<span class="setno">${f.set_no}</span>`:''}</div>
       </div></div>`;}).join('')+`</div>`;
 }
