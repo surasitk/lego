@@ -69,6 +69,7 @@
   .nm{font-family:"Fredoka",sans-serif;font-weight:600;font-size:15.5px;line-height:1.2}
   .nm small{display:block;font-family:"Inter",sans-serif;font-weight:500;color:var(--muted);font-size:12px;margin-top:1px}
   .series-tag{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:7px}
+  .setno{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--muted);margin-left:6px;white-space:nowrap}
   .cat{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
   .cat .dot{width:9px;height:9px;border-radius:50%}
   .date{color:var(--muted);font-size:13px;white-space:nowrap}
@@ -296,15 +297,15 @@ function tableHTML(list){
     return `<tr data-i="${i}">
       <td class="idx">${i+1}</td>
       <td><div class="thumb">${imgOrEmoji(f)}</div></td>
-      <td><div class="nm">${f.name_th}<small>${f.name_en||''}</small></div></td>
-      <td><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span></td>
+      <td><div class="nm">${f.name_en||f.name_th}<small>${f.name_en?f.name_th:''}</small></div></td>
+      <td><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>${f.set_no?`<span class="setno">${f.set_no}</span>`:''}</td>
       <td class="date">${f.release_date||'-'}</td>
       <td class="hide-mobile"><span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
       <td class="hide-mobile"><span class="conf ${cc}">${cl}</span></td>
       <td class="hide-mobile bl">${f.bricklink_id||'—'}</td>
     </tr>`;}).join('');
   return `<div class="table-card"><table>
-    <thead><tr><th>#</th><th>รูป</th><th>ชื่อ</th><th>ซีรีส์</th><th>วางจำหน่าย</th>
+    <thead><tr><th>#</th><th>รูป</th><th>ชื่อ</th><th>ซีรีส์ / รหัสชุด</th><th>วางจำหน่าย</th>
     <th class="hide-mobile">หมวด</th><th class="hide-mobile">ความมั่นใจ</th><th class="hide-mobile">BrickLink</th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
 }
@@ -315,8 +316,8 @@ function gridHTML(list){
     const [cc,cl]=CONF[f.confidence]||CONF.guess;
     return `<div class="card" data-i="${i}">
       <div class="pic"><span class="yr">${yearOf(f)}</span>${imgOrEmoji(f)}</div>
-      <div class="info"><div class="nm">${f.name_th}<small>${f.name_en||''}</small></div>
-      <div class="row2"><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>
+      <div class="info"><div class="nm">${f.name_en||f.name_th}<small>${f.name_en?f.name_th:''}</small></div>
+      <div class="row2"><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>${f.set_no?`<span class="setno">${f.set_no}</span>`:''}
       <span class="conf ${cc}">${cl}</span></div></div></div>`;}).join('')+`</div>`;
 }
 function attachRowClicks(list){
@@ -336,10 +337,11 @@ function openLB(f){
   const c=CAT[f.category]||{label:f.category||'-',color:'#9aa6b6'};
   const [cc,cl]=CONF[f.confidence]||CONF.guess;
   document.getElementById('lbPic').innerHTML=imgOrEmoji(f);
-  document.getElementById('lbName').textContent=f.name_th;
-  document.getElementById('lbEn').textContent=f.name_en||'';
+  document.getElementById('lbName').textContent=f.name_en||f.name_th;
+  document.getElementById('lbEn').textContent=f.name_en?f.name_th:'';
   document.getElementById('lbMeta').innerHTML=
     `<span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>`+
+    (f.set_no?`<span class="setno">${f.set_no}</span>`:'')+
     `<span class="date">📅 ${f.release_date||'-'}</span>`+
     `<span class="conf ${cc}">${cl}</span>`+
     (f.bricklink_id?`<span class="bl">${f.bricklink_id}</span>`:'');
