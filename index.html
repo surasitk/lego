@@ -240,6 +240,8 @@ const blUrl = f => f.bricklink_id
   ? `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${encodeURIComponent(f.bricklink_id)}`
   : `https://www.bricklink.com/v2/search.page?q=${encodeURIComponent(f.name_en||f.name_th)}&brand=1000`;
 const yearOf = f => f.release_sort ? String(f.release_sort).slice(0,4) : '';
+const THM={'ม.ค.':'Jan','ก.พ.':'Feb','มี.ค.':'Mar','เม.ย.':'Apr','พ.ค.':'May','มิ.ย.':'Jun','ก.ค.':'Jul','ส.ค.':'Aug','ก.ย.':'Sep','ต.ค.':'Oct','พ.ย.':'Nov','ธ.ค.':'Dec'};
+const enDate = d => { if(!d) return '—'; for(const k in THM) d=d.split(k).join(THM[k]); return d; };
 function pic(f, big){
   if(f.image_url) return `<img loading="lazy" src="${f.image_url}" alt="${(f.name_en||f.name_th)}" onerror="this.parentNode.innerHTML='<span class=&quot;emo&quot;>${f.emoji||'🧱'}</span>'">`;
   return `<span class="emo">${f.emoji||'🧱'}</span>`;
@@ -301,7 +303,7 @@ function tableHTML(list){
       <td><div class="thumb">${pic(f)}</div></td>
       <td><div class="nm">${f.name_en||f.name_th}</div></td>
       <td><span class="series-tag" style="color:${c.color};background:${c.color}18">${f.series||'—'}</span>${f.set_no?`<span class="setno">${f.set_no}</span>`:''}</td>
-      <td class="date col-hide">${f.release_date||'—'}</td>
+      <td class="date col-hide">${enDate(f.release_date)}</td>
       <td class="col-hide"><span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
     </tr>`;}).join('');
   return `<div class="table-wrap"><table>
@@ -327,7 +329,7 @@ function openLB(f){
   document.getElementById('lbMeta').innerHTML=
     `<span class="series-tag" style="color:${c.color};background:${c.color}18">${f.series||'—'}</span>`+
     (f.set_no?`<span class="setno">${f.set_no}</span>`:'')+
-    `<span class="date">📅 ${f.release_date||'—'}</span>`+
+    `<span class="date">📅 ${enDate(f.release_date)}</span>`+
     `<span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span>`;
   document.getElementById('lbLink').href=blUrl(f);
   document.getElementById('lb').classList.add('show');
