@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คอลเลกชัน LEGO Minifigures</title>
+<meta name="description" content="คอลเลกชันมินิฟิกเกอร์ LEGO ส่วนตัว เรียงตามปีวางจำหน่าย พร้อมรูปทางการ">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef1f6; --paper:#ffffff; --ink:#15181d; --muted:#5b6470; --line:#e2e7ef;
+    --red:#d01012; --yellow:#fcc700; --blue:#0b6fc9; --green:#1f9d52; --purple:#7a44c6; --orange:#ef7d20;
+    --shadow:0 1px 0 rgba(0,0,0,.04), 0 18px 40px -22px rgba(20,30,50,.45);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter","Noto Sans Thai",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  a{color:var(--blue)}
+
+  /* Hero */
+  header.hero{position:relative;overflow:hidden;color:#fff;padding:46px 0 56px;
+    background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.10) 0 8px,transparent 9px) 0 0/44px 44px,linear-gradient(180deg,#11151c,#1b2330);}
+  .eyebrow{font-family:"Fredoka",sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:var(--yellow);margin-bottom:12px;display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:24px;height:6px;border-radius:3px;background:var(--red);box-shadow:9px 0 0 var(--yellow),18px 0 0 var(--blue)}
+  h1{font-family:"Fredoka",sans-serif;font-weight:700;line-height:1.03;font-size:clamp(30px,5.4vw,54px);letter-spacing:-.01em;max-width:18ch}
+  h1 .pop{color:var(--yellow)}
+  .lede{margin-top:14px;max-width:62ch;color:#cdd5e1;font-size:clamp(14px,1.7vw,17px)}
+  .meta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 16px;min-width:96px}
+  .stat b{font-family:"Fredoka",sans-serif;font-size:24px;line-height:1.1;display:block}
+  .stat small{color:#9aa6b6;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+
+  /* Controls */
+  .controls{position:sticky;top:0;z-index:30;background:rgba(238,241,246,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:11px 0}
+  .ctrls-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .search{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+  .search input{border:0;outline:0;font:inherit;width:100%;background:transparent;color:var(--ink)}
+  .search svg{flex:none;color:var(--muted)}
+  .seg{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px}
+  .seg button{font-family:"Fredoka",sans-serif;font-size:13px;border:0;background:transparent;color:var(--muted);padding:6px 13px;border-radius:999px;cursor:pointer}
+  .seg button.on{background:var(--ink);color:#fff}
+  select.sort{font:inherit;font-size:13.5px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 13px;color:var(--ink);cursor:pointer}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-family:"Fredoka",sans-serif;font-weight:500;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:6px 13px;border-radius:999px;transition:.15s;white-space:nowrap}
+  .chip:hover{border-color:#b9c2d0}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+
+  main{padding:26px 0 60px}
+  .count-line{font-size:13px;color:var(--muted);margin-bottom:12px}
+
+  /* Table */
+  .table-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  thead th{font-family:"Fredoka",sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 14px;background:#f7f9fc;border-bottom:1px solid var(--line);position:sticky;top:0}
+  tbody tr{border-bottom:1px solid #eef1f6;transition:background .12s;cursor:pointer}
+  tbody tr:last-child{border-bottom:0}
+  tbody tr:hover{background:#f6faff}
+  td{padding:10px 14px;vertical-align:middle;font-size:14px}
+  td.idx{color:#aab2bf;font-variant-numeric:tabular-nums;font-size:12.5px;width:34px}
+  .thumb{width:60px;height:60px;border-radius:11px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(160deg,#f4f6fa,#e9edf4);border:1px solid var(--line);position:relative}
+  .thumb img{width:100%;height:100%;object-fit:contain;display:block}
+  .thumb .emo{font-size:30px;line-height:1}
+  .nm{font-family:"Fredoka",sans-serif;font-weight:600;font-size:15.5px;line-height:1.2}
+  .nm small{display:block;font-family:"Inter",sans-serif;font-weight:500;color:var(--muted);font-size:12px;margin-top:1px}
+  .series-tag{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 9px;border-radius:7px}
+  .cat{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+  .cat .dot{width:9px;height:9px;border-radius:50%}
+  .date{color:var(--muted);font-size:13px;white-space:nowrap}
+  .conf{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+  .c-sure{background:#e3f6ea;color:var(--green)} .c-fair{background:#fff4d6;color:#9a7400} .c-guess{background:#eceff3;color:#5b6470}
+  .bl{font-size:11.5px;color:#aab2bf;font-family:ui-monospace,monospace}
+
+  /* Grid view */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(186px,1fr));gap:15px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(0,0,0,.04),0 26px 46px -22px rgba(20,30,50,.5)}
+  .card .pic{height:170px;display:grid;place-items:center;background:linear-gradient(160deg,#f6f8fc,#eaeef5);position:relative;border-bottom:1px solid var(--line)}
+  .card .pic img{max-width:84%;max-height:88%;object-fit:contain}
+  .card .pic .emo{font-size:64px}
+  .card .pic .yr{position:absolute;top:10px;left:10px;font-family:"Fredoka",sans-serif;font-weight:700;font-size:13px;background:var(--yellow);color:#1b1300;padding:2px 10px;border-radius:7px}
+  .card .info{padding:12px 13px 14px}
+  .card .info .nm{font-size:15px}
+  .card .info .row2{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:7px}
+
+  /* Unidentified */
+  .uncertain{margin-top:40px;background:#fffdf5;border:1px dashed #e3d49a;border-radius:18px;padding:22px 20px 24px}
+  .uncertain h2{font-family:"Fredoka",sans-serif;font-size:21px;display:flex;align-items:center;gap:9px}
+  .uncertain p.note{color:var(--muted);font-size:13.5px;margin:7px 0 16px;max-width:72ch}
+  .ulist{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:11px}
+  .ucard{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:12px 13px;display:flex;gap:11px;align-items:flex-start}
+  .uemoji{font-size:28px;flex:none;width:44px;height:44px;display:grid;place-items:center;background:#f1f3f7;border-radius:10px}
+  .ucard b{font-family:"Fredoka",sans-serif;font-weight:600;font-size:14px;display:block}
+  .ucard span{font-size:12px;color:var(--muted);display:block;margin-top:2px}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,14,20,.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
+  .lb.show{display:flex}
+  .lb-card{background:var(--paper);border-radius:20px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+  .lb-pic{height:330px;display:grid;place-items:center;background:linear-gradient(160deg,#f6f8fc,#e9edf4);position:relative}
+  .lb-pic img{max-width:80%;max-height:90%;object-fit:contain}
+  .lb-pic .emo{font-size:120px}
+  .lb-body{padding:18px 20px 22px}
+  .lb-body h3{font-family:"Fredoka",sans-serif;font-size:23px}
+  .lb-body .en{color:var(--muted);font-size:14px;margin-top:1px}
+  .lb-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+  .lb-link{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-family:"Fredoka",sans-serif;font-weight:500;font-size:13.5px;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 13px}
+  .lb-link:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .lb-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center}
+
+  footer{padding:28px 0 50px;color:var(--muted);font-size:12.5px;text-align:center}
+  .src{display:inline-flex;align-items:center;gap:7px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:12px;font-size:12.5px}
+  .src .live{width:8px;height:8px;border-radius:50%;background:#cbd2dc}
+  .src .live.on{background:var(--green);box-shadow:0 0 0 3px rgba(31,157,82,.18)}
+  .disclaimer{max-width:76ch;margin:0 auto;font-size:12.5px;color:#69727e;line-height:1.6}
+
+  .loading{padding:60px 0;text-align:center;color:var(--muted)}
+  .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--blue);border-radius:50%;animation:s 0.8s linear infinite;margin:0 auto 14px}
+  @keyframes s{to{transform:rotate(360deg)}}
+  .hide-mobile{}
+  @media (max-width:720px){
+    .hide-mobile{display:none}
+    td,thead th{padding:9px 10px}
+    .thumb{width:52px;height:52px}
+    .grid{grid-template-columns:1fr 1fr;gap:11px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">คอลเลกชันส่วนตัว</span>
+    <h1>มินิฟิกเกอร์ <span class="pop">LEGO</span> ของฉัน</h1>
+    <p class="lede">ไล่เรียงตามปีวางจำหน่าย พร้อมรูปทางการจากฐานข้อมูล BrickLink แสดงในตารางเลย ไม่ต้องคลิกไปหา · ค้นหา กรองตามหมวด และสลับมุมมองตาราง/แกลเลอรีได้</p>
+    <div class="meta">
+      <div class="stat"><b id="mTotal">–</b><small>ระบุได้แล้ว</small></div>
+      <div class="stat"><b id="mSeries">–</b><small>ซีรีส์/ไลน์</small></div>
+      <div class="stat"><b id="mSpan">–</b><small>ช่วงปี</small></div>
+      <div class="stat"><b id="mUnsure">–</b><small>รอยืนยัน</small></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="ctrls-row">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="ค้นหาชื่อ / ซีรีส์ / รหัส BrickLink…" autocomplete="off">
+      </label>
+      <select class="sort" id="sort">
+        <option value="year-asc">ปี: เก่า → ใหม่</option>
+        <option value="year-desc">ปี: ใหม่ → เก่า</option>
+        <option value="name">ชื่อ (A–Z)</option>
+        <option value="series">ซีรีส์</option>
+      </select>
+      <div class="seg" id="view">
+        <button data-v="table" class="on">▤ ตาราง</button>
+        <button data-v="grid">▦ แกลเลอรี</button>
+      </div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="count-line" id="count"></div>
+  <div id="content">
+    <div class="loading"><div class="spin"></div>กำลังโหลดข้อมูล…</div>
+  </div>
+
+  <section class="uncertain" id="uncertain" style="display:none">
+    <h2>🔎 ตัวที่ยังฟันธงไม่ได้ 100%</h2>
+    <p class="note">กลุ่มนี้อยู่ในรูปแบบไกล/เบลอ หรือเป็นตัวกึ่งทั่วไปที่หน้าตาใกล้เคียงหลายตัว เลยให้เป็น “เดาที่ใกล้เคียงที่สุด” ไว้ก่อน ถ้าถ่ายรูปใกล้ๆ มาเพิ่ม ช่วยฟันธงให้แม่นขึ้นได้</p>
+    <div class="ulist" id="ulist"></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="src"><span class="live" id="live"></span><span id="srcText">กำลังเชื่อมต่อ…</span></div>
+  <div class="disclaimer">
+    รูปทางการดึงจาก BrickLink Image CDN ตามรหัสแคตตาล็อกของแต่ละตัว · วันวางจำหน่ายอ้างอิงวันเปิดตัวทั่วโลก/อเมริกาของแต่ละซีรีส์ · ข้อมูลซีรีส์อ้างอิง LEGO.com, BrickLink, Brickset
+  </div>
+</footer>
+
+<div class="lb" id="lb">
+  <div class="lb-card">
+    <div class="lb-pic"><button class="lb-close" id="lbClose">✕</button><span id="lbPic"></span></div>
+    <div class="lb-body">
+      <h3 id="lbName"></h3><div class="en" id="lbEn"></div>
+      <div class="lb-meta" id="lbMeta"></div>
+      <a class="lb-link" id="lbLink" target="_blank" rel="noopener">ดูในแคตตาล็อก BrickLink →</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ---------- Supabase config (anon key is public; protected by RLS) ---------- */
+const SUPABASE_URL = "https://qmmopgyevfuztpqaynww.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_kGOwN1irW29qdPoTl6DNcQ_CIVLpe5v";
+
+const CAT = {
+  animal:  {label:"สัตว์",            color:"#1f9d52"},
+  food:    {label:"อาหาร",            color:"#ef7d20"},
+  fantasy: {label:"แฟนตาซี/ประวัติศาสตร์", color:"#0b6fc9"},
+  licensed:{label:"ลิขสิทธิ์",        color:"#d01012"},
+  craft:   {label:"อื่นๆ",            color:"#7a44c6"},
+};
+const CONF = {sure:["c-sure","ชัดเจน"], fair:["c-fair","ค่อนข้างมั่นใจ"], guess:["c-guess","รอยืนยัน"]};
+
+let ALL=[], IDENT=[], UNSURE=[], view="table", cat="all", sortBy="year-asc", query="";
+
+function blSearchUrl(f){
+  const q = f.bricklink_id ? f.bricklink_id : (f.name_en||f.name_th);
+  return f.bricklink_id
+    ? `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${encodeURIComponent(f.bricklink_id)}`
+    : `https://www.bricklink.com/v2/search.page?q=${encodeURIComponent(q)}&brand=1000`;
+}
+function imgOrEmoji(f, cls){
+  if(f.image_url) return `<img loading="lazy" src="${f.image_url}" alt="${(f.name_en||f.name_th)}" onerror="this.parentNode.innerHTML='<span class=&quot;emo&quot;>${f.emoji||'🧱'}</span>'">`;
+  return `<span class="emo">${f.emoji||'🧱'}</span>`;
+}
+function yearOf(f){ return f.release_date ? String(f.release_sort).slice(0,4) : ''; }
+
+/* ---------- load ---------- */
+async function load(){
+  let data=null, live=false;
+  if(window.supabase && !SUPABASE_ANON_KEY.startsWith("__")){
+    try{
+      const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      const {data:rows, error} = await sb.from('minifigures').select('*').order('release_sort',{ascending:true});
+      if(error) throw error;
+      if(rows && rows.length){ data=rows; live=true; }
+    }catch(e){ console.warn('Supabase fetch failed, using local data:', e.message); }
+  }
+  if(!data){
+    try{ const r = await fetch('./figures.json'); data = await r.json(); }
+    catch(e){ document.getElementById('content').innerHTML='<div class="loading">โหลดข้อมูลไม่สำเร็จ</div>'; return; }
+  }
+  ALL = data;
+  IDENT = data.filter(f=>f.identified);
+  UNSURE = data.filter(f=>!f.identified);
+  setSource(live);
+  buildChips(); buildStats(); buildUnsure(); render();
+}
+function setSource(live){
+  document.getElementById('live').classList.toggle('on', live);
+  document.getElementById('srcText').textContent = live
+    ? 'ข้อมูลสดจาก Supabase' : 'ข้อมูลจากไฟล์ในเว็บ (ออฟไลน์)';
+}
+function buildStats(){
+  document.getElementById('mTotal').textContent = IDENT.length;
+  document.getElementById('mSeries').textContent = new Set(IDENT.map(f=>f.series)).size;
+  const yrs = IDENT.map(f=>+yearOf(f)).filter(Boolean);
+  document.getElementById('mSpan').textContent = yrs.length? Math.min(...yrs)+'–'+Math.max(...yrs):'–';
+  document.getElementById('mUnsure').textContent = UNSURE.length;
+}
+function buildChips(){
+  const defs=[["all","ทั้งหมด",null], ...Object.entries(CAT).map(([k,v])=>[k,v.label,v.color])];
+  const el=document.getElementById('chips'); el.innerHTML='';
+  defs.forEach(([id,label,col])=>{
+    const b=document.createElement('button'); b.className="chip"+(id===cat?" on":"");
+    b.innerHTML=(col?`<span class="dot" style="background:${col}"></span>`:"")+label;
+    b.onclick=()=>{cat=id;[...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();};
+    el.appendChild(b);
+  });
+}
+function filtered(){
+  let l = IDENT.filter(f=>cat==="all"||f.category===cat);
+  if(query){ const q=query.toLowerCase();
+    l=l.filter(f=>[f.name_th,f.name_en,f.series,f.bricklink_id].filter(Boolean).some(s=>s.toLowerCase().includes(q)));
+  }
+  const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
+    'name':(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th),
+    'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort};
+  return l.sort(s[sortBy]);
+}
+function render(){
+  const list=filtered();
+  document.getElementById('count').textContent = `แสดง ${list.length} ตัว`+(cat!=="all"?` ในหมวด “${CAT[cat].label}”`:'')+(query?` · ค้นหา “${query}”`:'');
+  document.getElementById('content').innerHTML = view==="table"? tableHTML(list): gridHTML(list);
+  attachRowClicks(list);
+}
+function tableHTML(list){
+  if(!list.length) return '<div class="loading">ไม่พบรายการที่ตรงกับเงื่อนไข</div>';
+  const rows=list.map((f,i)=>{
+    const c=CAT[f.category]||{label:f.category||'-',color:'#9aa6b6'};
+    const [cc,cl]=CONF[f.confidence]||CONF.guess;
+    return `<tr data-i="${i}">
+      <td class="idx">${i+1}</td>
+      <td><div class="thumb">${imgOrEmoji(f)}</div></td>
+      <td><div class="nm">${f.name_th}<small>${f.name_en||''}</small></div></td>
+      <td><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span></td>
+      <td class="date">${f.release_date||'-'}</td>
+      <td class="hide-mobile"><span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
+      <td class="hide-mobile"><span class="conf ${cc}">${cl}</span></td>
+      <td class="hide-mobile bl">${f.bricklink_id||'—'}</td>
+    </tr>`;}).join('');
+  return `<div class="table-card"><table>
+    <thead><tr><th>#</th><th>รูป</th><th>ชื่อ</th><th>ซีรีส์</th><th>วางจำหน่าย</th>
+    <th class="hide-mobile">หมวด</th><th class="hide-mobile">ความมั่นใจ</th><th class="hide-mobile">BrickLink</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+function gridHTML(list){
+  if(!list.length) return '<div class="loading">ไม่พบรายการที่ตรงกับเงื่อนไข</div>';
+  return `<div class="grid">`+list.map((f,i)=>{
+    const c=CAT[f.category]||{label:f.category||'-',color:'#9aa6b6'};
+    const [cc,cl]=CONF[f.confidence]||CONF.guess;
+    return `<div class="card" data-i="${i}">
+      <div class="pic"><span class="yr">${yearOf(f)}</span>${imgOrEmoji(f)}</div>
+      <div class="info"><div class="nm">${f.name_th}<small>${f.name_en||''}</small></div>
+      <div class="row2"><span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>
+      <span class="conf ${cc}">${cl}</span></div></div></div>`;}).join('')+`</div>`;
+}
+function attachRowClicks(list){
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    el.onclick=()=>openLB(list[+el.dataset.i]);
+  });
+}
+function buildUnsure(){
+  if(!UNSURE.length) return;
+  document.getElementById('uncertain').style.display='';
+  document.getElementById('ulist').innerHTML = UNSURE.map(u=>
+    `<div class="ucard"><div class="uemoji">${u.emoji||'❔'}</div>
+     <div><b>${u.name_th}</b><span>${u.note||''}</span></div></div>`).join('');
+}
+/* lightbox */
+function openLB(f){
+  const c=CAT[f.category]||{label:f.category||'-',color:'#9aa6b6'};
+  const [cc,cl]=CONF[f.confidence]||CONF.guess;
+  document.getElementById('lbPic').innerHTML=imgOrEmoji(f);
+  document.getElementById('lbName').textContent=f.name_th;
+  document.getElementById('lbEn').textContent=f.name_en||'';
+  document.getElementById('lbMeta').innerHTML=
+    `<span class="series-tag" style="color:${c.color};background:${c.color}1a">${f.series||'-'}</span>`+
+    `<span class="date">📅 ${f.release_date||'-'}</span>`+
+    `<span class="conf ${cc}">${cl}</span>`+
+    (f.bricklink_id?`<span class="bl">${f.bricklink_id}</span>`:'');
+  document.getElementById('lbLink').href=blSearchUrl(f);
+  document.getElementById('lb').classList.add('show');
+}
+document.getElementById('lbClose').onclick=()=>document.getElementById('lb').classList.remove('show');
+document.getElementById('lb').onclick=e=>{if(e.target.id==='lb')document.getElementById('lb').classList.remove('show')};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('show')});
+/* controls */
+document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim();render();});
+document.getElementById('sort').addEventListener('change',e=>{sortBy=e.target.value;render();});
+document.getElementById('view').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  view=b.dataset.v;[...document.querySelectorAll('#view button')].forEach(x=>x.classList.toggle('on',x===b));render();});
+
+load();
+</script>
+</body>
+</html>
