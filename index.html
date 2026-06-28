@@ -123,14 +123,18 @@
   .lb{position:fixed;inset:0;z-index:100;background:rgba(8,11,18,.72);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px}
   .lb.show{display:flex;animation:fade .18s ease}
   @keyframes fade{from{opacity:0}to{opacity:1}}
-  .lb-card{background:var(--paper);border-radius:24px;max-width:430px;width:100%;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.6)}
-  .lb-pic{height:clamp(260px,42vh,360px);display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#f6f8fc,#e8edf5);position:relative}
+  .lb-card{background:var(--paper);border-radius:24px;max-width:430px;width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 90px -20px rgba(0,0,0,.6)}
+  .lb-pic{flex:none;height:clamp(220px,38vh,340px);display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#f6f8fc,#e8edf5);position:relative}
   .lb-pic img{max-width:78%;max-height:88%;object-fit:contain}
   .lb-pic .emo{font-size:120px}
-  .lb-body{padding:20px 22px 24px}
+  .lb-body{padding:20px 22px 24px;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .lb-body h3{font-family:"Fredoka",sans-serif;font-weight:700;font-size:24px;line-height:1.15;letter-spacing:-.01em}
   .lb-body .th{color:var(--muted);font-size:14px;margin-top:2px}
   .lb-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+  .lb-info{margin-top:16px;display:flex;flex-direction:column;gap:11px}
+  .lb-sect{background:#f7f9fc;border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .lb-sect h4{font-family:"Fredoka",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+  .lb-sect p{font-size:13.5px;line-height:1.55;color:var(--ink)}
   .lb-link{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ink);border:1px solid var(--line2);border-radius:12px;padding:11px 15px;transition:.15s}
   .lb-link:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
   .lb-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -249,6 +253,7 @@
     <div class="lb-body">
       <h3 id="lbName"></h3><div class="th" id="lbTh"></div>
       <div class="lb-meta" id="lbMeta"></div>
+      <div class="lb-info" id="lbInfo"></div>
       <a class="lb-link" id="lbLink" target="_blank" rel="noopener">View on BrickLink →</a>
     </div>
   </div>
@@ -306,6 +311,13 @@ async function load(){
   ];
   const _have=new Set(ALL.map(f=>f.name_en));
   EXTRA.forEach(e=>{ if(!_have.has(e.name_en)) ALL.push(e); });
+  // History/inspiration fallback from the data file (no-op once stored in the DB)
+  if(ALL.some(f=>!f.history)){
+    try{ const _fb=await (await fetch('./figures.json')).json();
+      const _m=Object.fromEntries(_fb.map(x=>[x.name_en,x]));
+      ALL.forEach(f=>{ const x=_m[f.name_en]; if(x){ f.history=f.history||x.history; f.inspiration=f.inspiration||x.inspiration; } });
+    }catch(e){}
+  }
   document.getElementById('live').classList.toggle('on',live);
   document.getElementById('srcText').textContent=live?'Live from Supabase':'Loaded from static data';
   stats(); chips(); render();
@@ -378,6 +390,10 @@ function openLB(f){
     (f.set_no?`<span class="setno">${f.set_no}</span>`:'')+
     `<span class="date">📅 ${enDate(f.release_date)}</span>`+
     `<span class="cat"><span class="dot" style="background:${c.color}"></span>${c.label}</span>`;
+  let info='';
+  if(f.history) info+=`<div class="lb-sect"><h4>📜 History</h4><p>${f.history}</p></div>`;
+  if(f.inspiration) info+=`<div class="lb-sect"><h4>💡 Inspiration</h4><p>${f.inspiration}</p></div>`;
+  document.getElementById('lbInfo').innerHTML=info;
   document.getElementById('lbLink').href=blUrl(f);
   document.getElementById('lb').classList.add('show');
 }

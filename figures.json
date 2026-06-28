@@ -12,7 +12,9 @@
     "confidence": "fair",
     "emoji": "🚀",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Part of the LEGO Toy Story line (2010), released alongside the Toy Story 3 sets.",
+    "inspiration": "Buzz Lightyear, the Space Ranger action figure from Pixar's Toy Story."
   },
   {
     "name_th": "วู้ดดี้",
@@ -27,7 +29,9 @@
     "confidence": "sure",
     "emoji": "🤠",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Released in 2010 with LEGO's Toy Story theme.",
+    "inspiration": "Sheriff Woody, the pull-string cowboy doll and Andy's favourite toy."
   },
   {
     "name_th": "ฟาโรห์",
@@ -42,7 +46,9 @@
     "confidence": "fair",
     "emoji": "🏺",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Collectible Minifigures Series 2 (2010), an early CMF wave.",
+    "inspiration": "An ancient Egyptian pharaoh in golden ceremonial regalia."
   },
   {
     "name_th": "ราชาสมุทร / โพไซดอน",
@@ -57,7 +63,9 @@
     "confidence": "sure",
     "emoji": "🔱",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Collectible Minifigures Series 7 (2012).",
+    "inspiration": "A merman sea-king echoing Poseidon/Neptune, ruler of the oceans."
   },
   {
     "name_th": "ชุดไก่",
@@ -72,7 +80,9 @@
     "confidence": "sure",
     "emoji": "🐔",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 9 (set 71000, 2013); one of LEGO's most beloved costume figures.",
+    "inspiration": "A super-fan wearing a full chicken mascot suit."
   },
   {
     "name_th": "พ่อมด",
@@ -87,7 +97,9 @@
     "confidence": "sure",
     "emoji": "🧙",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 12 (71007, 2014).",
+    "inspiration": "A classic fantasy wizard with a star-and-moon robe and crystal staff."
   },
   {
     "name_th": "ชุดฮอตดอก",
@@ -102,7 +114,9 @@
     "confidence": "sure",
     "emoji": "🌭",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 13 (71008, 2015); an instant collector favourite.",
+    "inspiration": "A cheerful man dressed as a hot dog in a bun."
   },
   {
     "name_th": "ราชาคลาสสิก",
@@ -117,7 +131,9 @@
     "confidence": "sure",
     "emoji": "👑",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 13 (71008, 2015).",
+    "inspiration": "A medieval king with golden crown and ermine cape, nodding to LEGO Castle."
   },
   {
     "name_th": "ชุดฉลาม",
@@ -132,7 +148,9 @@
     "confidence": "sure",
     "emoji": "🦈",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 15 (71011, 2016).",
+    "inspiration": "A goofy guy poking out of a foam shark costume."
   },
   {
     "name_th": "ชุดกล้วย",
@@ -147,7 +165,9 @@
     "confidence": "sure",
     "emoji": "🍌",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 16 (71013, 2016).",
+    "inspiration": "A man in a giant banana suit."
   },
   {
     "name_th": "เด็กชุดเพนกวิน",
@@ -162,7 +182,9 @@
     "confidence": "fair",
     "emoji": "🐧",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 16 (71013, 2016).",
+    "inspiration": "A child bundled up in a penguin costume."
   },
   {
     "name_th": "แบทแมน (Batman Returns 1992)",
@@ -177,7 +199,9 @@
     "confidence": "sure",
     "emoji": "🦇",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO DC polybag 30653 (2023), a tribute build.",
+    "inspiration": "Michael Keaton's Batman from Tim Burton's 1992 film Batman Returns."
   },
   {
     "name_th": "แคทแมน",
@@ -192,7 +216,9 @@
     "confidence": "sure",
     "emoji": "🐱",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Batman Movie CMF Series 1 (71017, 2017).",
+    "inspiration": "Catman, a campy clawed DC villain spoofed in the movie."
   },
   {
     "name_th": "เฮดีส",
@@ -207,7 +233,9 @@
     "confidence": "sure",
     "emoji": "🔥",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Disney CMF Series 2 (71024, 2019).",
+    "inspiration": "Hades, the blue-flamed lord of the Underworld from Disney's Hercules."
   },
   {
     "name_th": "เพรซิเดนต์ บิสเนส",
@@ -222,7 +250,9 @@
     "confidence": "sure",
     "emoji": "🎷",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Movie CMF Series (71004, 2014).",
+    "inspiration": "Lord/President Business, the order-obsessed villain of The LEGO Movie."
   },
   {
     "name_th": "เจมส์ บอนด์ 007",
@@ -237,7 +267,9 @@
     "confidence": "sure",
     "emoji": "🎩",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Speed Champions 007 Aston Martin DB5 (76911, 2022).",
+    "inspiration": "James Bond (Daniel Craig) in his tuxedo, from No Time to Die."
   },
   {
     "name_th": "โดมินิค โทเร็ตโต้",
@@ -252,7 +284,9 @@
     "confidence": "sure",
     "emoji": "👤",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Speed Champions 1970 Dodge Charger R/T (76912, 2022).",
+    "inspiration": "Dom Toretto, the family-first street racer of Fast & Furious."
   },
   {
     "name_th": "ไบรอัน โอคอนเนอร์",
@@ -267,7 +301,9 @@
     "confidence": "sure",
     "emoji": "🤍",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Speed Champions 2 Fast 2 Furious Nissan Skyline GT-R (76917, 2023).",
+    "inspiration": "Brian O'Conner, ex-cop turned racer in the Fast & Furious saga."
   },
   {
     "name_th": "ชุดข้าวโพด",
@@ -282,7 +318,9 @@
     "confidence": "sure",
     "emoji": "🌽",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 17 (71018, 2017).",
+    "inspiration": "A man dressed as an ear of corn on the cob."
   },
   {
     "name_th": "ชุดมังกรแดง",
@@ -297,7 +335,9 @@
     "confidence": "sure",
     "emoji": "🐉",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 18 (71021, 2018), the 40th-anniversary 'party' wave.",
+    "inspiration": "A festive dragon costume."
   },
   {
     "name_th": "ชุดพลุ (BANG)",
@@ -312,7 +352,9 @@
     "confidence": "sure",
     "emoji": "🎆",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 18 (71021, 2018).",
+    "inspiration": "A 'BANG!' firework-rocket costume for celebrations."
   },
   {
     "name_th": "ชุดกระบองเพชร",
@@ -327,7 +369,9 @@
     "confidence": "sure",
     "emoji": "🌵",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 18 (71021, 2018).",
+    "inspiration": "A prickly cactus costume."
   },
   {
     "name_th": "ชุดยีราฟ",
@@ -342,7 +386,9 @@
     "confidence": "sure",
     "emoji": "🦒",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Movie 2 CMF (71023, 2019).",
+    "inspiration": "A tall giraffe onesie costume."
   },
   {
     "name_th": "ชุดสีเทียน",
@@ -357,7 +403,9 @@
     "confidence": "sure",
     "emoji": "🖍️",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Movie 2 CMF (71023, 2019).",
+    "inspiration": "A colourful crayon costume."
   },
   {
     "name_th": "ชุดแตงโม",
@@ -372,7 +420,9 @@
     "confidence": "sure",
     "emoji": "🍉",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Movie 2 CMF (71023, 2019).",
+    "inspiration": "A juicy watermelon-slice costume."
   },
   {
     "name_th": "ชุดพิซซ่า",
@@ -387,7 +437,9 @@
     "confidence": "sure",
     "emoji": "🍕",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 19 (71025, 2019).",
+    "inspiration": "A man dressed as a slice of pizza."
   },
   {
     "name_th": "ชุดถั่วลันเตา",
@@ -402,7 +454,9 @@
     "confidence": "sure",
     "emoji": "🫛",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 20 (71027, 2020).",
+    "inspiration": "A girl tucked inside a pea-pod costume."
   },
   {
     "name_th": "ชุดลามา",
@@ -417,7 +471,9 @@
     "confidence": "sure",
     "emoji": "🦙",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 20 (71027, 2020).",
+    "inspiration": "A fluffy llama costume."
   },
   {
     "name_th": "เด็กชุดไก่ (ส้ม)",
@@ -432,7 +488,9 @@
     "confidence": "sure",
     "emoji": "🐥",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Build-A-Minifigure (BAM) station exclusive, 2022.",
+    "inspiration": "A kid in a bright orange chick/chicken suit."
   },
   {
     "name_th": "ชุดไก่งวง",
@@ -447,7 +505,9 @@
     "confidence": "sure",
     "emoji": "🦃",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 23 (71034, 2022).",
+    "inspiration": "A Thanksgiving turkey costume."
   },
   {
     "name_th": "ชุดมังกรเขียว",
@@ -462,7 +522,9 @@
     "confidence": "sure",
     "emoji": "🐲",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 23 (71034, 2022).",
+    "inspiration": "A green dragon costume, companion to earlier dragon suits."
   },
   {
     "name_th": "ชุดป๊อปคอร์น",
@@ -477,7 +539,9 @@
     "confidence": "sure",
     "emoji": "🍿",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 23 (71034, 2022).",
+    "inspiration": "A movie-night popcorn-bucket costume."
   },
   {
     "name_th": "อัศวินแวมไพร์",
@@ -492,7 +556,9 @@
     "confidence": "sure",
     "emoji": "🧛",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 25 (71045, 2024).",
+    "inspiration": "A vampiric knight with bat-wing helm, bat shield and axe."
   },
   {
     "name_th": "ราชาอัศวินม้า",
@@ -507,7 +573,9 @@
     "confidence": "sure",
     "emoji": "🐎",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Creator 3-in-1 Medieval Horse Knight Castle (31168, 2025).",
+    "inspiration": "King of the new Horse Knights faction, reviving the Castle theme."
   },
   {
     "name_th": "แบทแมนเงือก",
@@ -522,7 +590,9 @@
     "confidence": "sure",
     "emoji": "🧜",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "The LEGO Batman Movie CMF Series 2 (71020, 2018).",
+    "inspiration": "A gag 'merman' Batman from the movie's wacky costume line-up."
   },
   {
     "name_th": "สาวชุดสตรอว์เบอร์รีเค้ก",
@@ -537,7 +607,9 @@
     "confidence": "sure",
     "emoji": "🍓",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Build-A-Minifigure exclusive, 2023.",
+    "inspiration": "A girl in a strawberry-shortcake slice costume with tie-dye shirt."
   },
   {
     "name_th": "เฮอร์คิวลิส",
@@ -552,7 +624,9 @@
     "confidence": "sure",
     "emoji": "🏛️",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Disney CMF Series 2 (71024, 2019).",
+    "inspiration": "Hercules, the demigod hero of Disney's Hercules."
   },
   {
     "name_th": "ชุดสีเทียนม่วงแดง",
@@ -567,7 +641,9 @@
     "confidence": "sure",
     "emoji": "🖍️",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Build-A-Minifigure exclusive, 2023.",
+    "inspiration": "A bright magenta crayon costume."
   },
   {
     "name_th": "นายกฯ ชุดข้าวโพด (Solomon Fleck)",
@@ -582,7 +658,9 @@
     "confidence": "sure",
     "emoji": "🌽",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Hidden Side / City figure (cty1222).",
+    "inspiration": "Mayor Solomon Fleck in a corn-cob mascot suit from Hidden Side's town of Newbury."
   },
   {
     "name_th": "ชุดเค้ก/พาย",
@@ -597,7 +675,9 @@
     "confidence": "sure",
     "emoji": "🥧",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Build-A-Minifigure exclusive, 2022.",
+    "inspiration": "A sweet slice-of-cake / pie costume."
   },
   {
     "name_th": "ปาร์ตี้ บานาน่า",
@@ -612,7 +692,9 @@
     "confidence": "sure",
     "emoji": "🍌",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "Party Banana Juice Bar promo set (5005250, 2018).",
+    "inspiration": "A dancing banana-suit guy with a boombox."
   },
   {
     "name_th": "ราชินีอียิปต์",
@@ -627,7 +709,9 @@
     "confidence": "sure",
     "emoji": "🐍",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 5 (set 8805, 2011).",
+    "inspiration": "An Egyptian queen in the spirit of Cleopatra, complete with a pet snake."
   },
   {
     "name_th": "ราชินี",
@@ -642,7 +726,9 @@
     "confidence": "sure",
     "emoji": "👸",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 15 (71011, 2016).",
+    "inspiration": "A regal castle queen with crown and ermine-trimmed cape."
   },
   {
     "name_th": "กัปตันโจรสลัด (Redbeard)",
@@ -657,7 +743,9 @@
     "confidence": "sure",
     "emoji": "🏴‍☠️",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "A classic LEGO Pirates captain, from the original 1989 Pirates theme.",
+    "inspiration": "A swashbuckling pirate captain with skull-and-crossbones hat, hook hand and peg leg."
   },
   {
     "name_th": "ทหารอิมพีเรียล (Bluecoat)",
@@ -672,7 +760,9 @@
     "confidence": "sure",
     "emoji": "🪖",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "LEGO Pirates 'Bluecoats' Imperial Soldiers faction (mid-1990s).",
+    "inspiration": "A Napoleonic-style naval soldier who pursued LEGO's pirates."
   },
   {
     "name_th": "ชุดนกยูง",
@@ -687,6 +777,8 @@
     "confidence": "sure",
     "emoji": "🦚",
     "identified": true,
-    "note": null
+    "note": null,
+    "history": "CMF Series 28 (71051, 2026), the latest wave.",
+    "inspiration": "A proud peacock costume with a fanned tail of feathers."
   }
 ]

@@ -87,6 +87,60 @@ for r in rows:
     if r["name_en"] in _n2c:
         r["category"] = _n2c[r["name_en"]]
 
+# --- History & Inspiration (shown in the popup) ---
+HIST = {
+ "Buzz Lightyear": ("Part of the LEGO Toy Story line (2010), released alongside the Toy Story 3 sets.", "Buzz Lightyear, the Space Ranger action figure from Pixar's Toy Story."),
+ "Woody": ("Released in 2010 with LEGO's Toy Story theme.", "Sheriff Woody, the pull-string cowboy doll and Andy's favourite toy."),
+ "Pharaoh": ("Collectible Minifigures Series 2 (2010), an early CMF wave.", "An ancient Egyptian pharaoh in golden ceremonial regalia."),
+ "Ocean King (Poseidon)": ("Collectible Minifigures Series 7 (2012).", "A merman sea-king echoing Poseidon/Neptune, ruler of the oceans."),
+ "Chicken Suit Guy": ("CMF Series 9 (set 71000, 2013); one of LEGO's most beloved costume figures.", "A super-fan wearing a full chicken mascot suit."),
+ "Wizard": ("CMF Series 12 (71007, 2014).", "A classic fantasy wizard with a star-and-moon robe and crystal staff."),
+ "Hot Dog Man": ("CMF Series 13 (71008, 2015); an instant collector favourite.", "A cheerful man dressed as a hot dog in a bun."),
+ "Classic King": ("CMF Series 13 (71008, 2015).", "A medieval king with golden crown and ermine cape, nodding to LEGO Castle."),
+ "Shark Suit Guy": ("CMF Series 15 (71011, 2016).", "A goofy guy poking out of a foam shark costume."),
+ "Banana Guy": ("CMF Series 16 (71013, 2016).", "A man in a giant banana suit."),
+ "Penguin Boy": ("CMF Series 16 (71013, 2016).", "A child bundled up in a penguin costume."),
+ "Batman — Batman Returns 1992": ("LEGO DC polybag 30653 (2023), a tribute build.", "Michael Keaton's Batman from Tim Burton's 1992 film Batman Returns."),
+ "Catman": ("The LEGO Batman Movie CMF Series 1 (71017, 2017).", "Catman, a campy clawed DC villain spoofed in the movie."),
+ "Hades": ("LEGO Disney CMF Series 2 (71024, 2019).", "Hades, the blue-flamed lord of the Underworld from Disney's Hercules."),
+ "President Business": ("The LEGO Movie CMF Series (71004, 2014).", "Lord/President Business, the order-obsessed villain of The LEGO Movie."),
+ "James Bond (007)": ("LEGO Speed Champions 007 Aston Martin DB5 (76911, 2022).", "James Bond (Daniel Craig) in his tuxedo, from No Time to Die."),
+ "Dominic Toretto": ("Speed Champions 1970 Dodge Charger R/T (76912, 2022).", "Dom Toretto, the family-first street racer of Fast & Furious."),
+ "Brian O'Conner": ("Speed Champions 2 Fast 2 Furious Nissan Skyline GT-R (76917, 2023).", "Brian O'Conner, ex-cop turned racer in the Fast & Furious saga."),
+ "Corn Cob Guy": ("CMF Series 17 (71018, 2017).", "A man dressed as an ear of corn on the cob."),
+ "Dragon Suit Guy": ("CMF Series 18 (71021, 2018), the 40th-anniversary 'party' wave.", "A festive dragon costume."),
+ "Firework Guy": ("CMF Series 18 (71021, 2018).", "A 'BANG!' firework-rocket costume for celebrations."),
+ "Cactus Girl": ("CMF Series 18 (71021, 2018).", "A prickly cactus costume."),
+ "Giraffe Guy": ("The LEGO Movie 2 CMF (71023, 2019).", "A tall giraffe onesie costume."),
+ "Crayon Girl": ("The LEGO Movie 2 CMF (71023, 2019).", "A colourful crayon costume."),
+ "Watermelon Dude": ("The LEGO Movie 2 CMF (71023, 2019).", "A juicy watermelon-slice costume."),
+ "Pizza Costume Guy": ("CMF Series 19 (71025, 2019).", "A man dressed as a slice of pizza."),
+ "Peapod Costume Girl": ("CMF Series 20 (71027, 2020).", "A girl tucked inside a pea-pod costume."),
+ "Llama Costume Girl": ("CMF Series 20 (71027, 2020).", "A fluffy llama costume."),
+ "Chicken Suit Boy": ("LEGO Build-A-Minifigure (BAM) station exclusive, 2022.", "A kid in a bright orange chick/chicken suit."),
+ "Turkey Costume": ("CMF Series 23 (71034, 2022).", "A Thanksgiving turkey costume."),
+ "Green Dragon Costume": ("CMF Series 23 (71034, 2022).", "A green dragon costume, companion to earlier dragon suits."),
+ "Popcorn Costume": ("CMF Series 23 (71034, 2022).", "A movie-night popcorn-bucket costume."),
+ "Vampire Knight": ("CMF Series 25 (71045, 2024).", "A vampiric knight with bat-wing helm, bat shield and axe."),
+ "Horse Knight King": ("LEGO Creator 3-in-1 Medieval Horse Knight Castle (31168, 2025).", "King of the new Horse Knights faction, reviving the Castle theme."),
+ "Mermaid Batman": ("The LEGO Batman Movie CMF Series 2 (71020, 2018).", "A gag 'merman' Batman from the movie's wacky costume line-up."),
+ "Strawberry Shortcake Girl": ("LEGO Build-A-Minifigure exclusive, 2023.", "A girl in a strawberry-shortcake slice costume with tie-dye shirt."),
+ "Hercules": ("LEGO Disney CMF Series 2 (71024, 2019).", "Hercules, the demigod hero of Disney's Hercules."),
+ "Magenta Crayon Costume Guy": ("LEGO Build-A-Minifigure exclusive, 2023.", "A bright magenta crayon costume."),
+ "Mayor Solomon Fleck (Corn Cob)": ("LEGO Hidden Side / City figure (cty1222).", "Mayor Solomon Fleck in a corn-cob mascot suit from Hidden Side's town of Newbury."),
+ "Cake / Pie Costume Guy": ("LEGO Build-A-Minifigure exclusive, 2022.", "A sweet slice-of-cake / pie costume."),
+ "Party Banana Guy": ("Party Banana Juice Bar promo set (5005250, 2018).", "A dancing banana-suit guy with a boombox."),
+ "Egyptian Queen": ("CMF Series 5 (set 8805, 2011).", "An Egyptian queen in the spirit of Cleopatra, complete with a pet snake."),
+ "Queen": ("CMF Series 15 (71011, 2016).", "A regal castle queen with crown and ermine-trimmed cape."),
+ "Pirate Captain (Redbeard)": ("A classic LEGO Pirates captain, from the original 1989 Pirates theme.", "A swashbuckling pirate captain with skull-and-crossbones hat, hook hand and peg leg."),
+ "Imperial Soldier": ("LEGO Pirates 'Bluecoats' Imperial Soldiers faction (mid-1990s).", "A Napoleonic-style naval soldier who pursued LEGO's pirates."),
+ "Peacock Costume": ("CMF Series 28 (71051, 2026), the latest wave.", "A proud peacock costume with a fanned tail of feathers."),
+}
+for r in rows:
+    _h = HIST.get(r["name_en"])
+    r["history"] = _h[0] if _h else None
+    r["inspiration"] = _h[1] if _h else None
+
 with open("figures.json", "w", encoding="utf-8") as f:
     json.dump(rows, f, ensure_ascii=False, indent=2)
 
@@ -99,14 +153,16 @@ L.append("create table if not exists public.minifigures (")
 L.append("  id bigserial primary key, name_th text not null, name_en text, series text,")
 L.append("  set_no text, release_date text, release_sort integer not null default 99990000,")
 L.append("  category text, bricklink_id text, image_url text, confidence text, emoji text,")
-L.append("  identified boolean not null default true, note text, created_at timestamptz not null default now()")
+L.append("  identified boolean not null default true, note text, history text, inspiration text, created_at timestamptz not null default now()")
 L.append(");")
 L.append("alter table public.minifigures add column if not exists set_no text;")
+L.append("alter table public.minifigures add column if not exists history text;")
+L.append("alter table public.minifigures add column if not exists inspiration text;")
 L.append("alter table public.minifigures enable row level security;")
 L.append('drop policy if exists "public read" on public.minifigures;')
 L.append('create policy "public read" on public.minifigures for select to anon, authenticated using (true);')
 L.append("truncate table public.minifigures restart identity;")
-cols = "name_th, name_en, series, set_no, release_date, release_sort, category, bricklink_id, image_url, confidence, emoji, identified, note"
+cols = "name_th, name_en, series, set_no, release_date, release_sort, category, bricklink_id, image_url, confidence, emoji, identified, note, history, inspiration"
 L.append(f"insert into public.minifigures ({cols}) values")
 vals = []
 for r in rows:
@@ -115,6 +171,7 @@ for r in rows:
         sql_str(r["release_date"]), str(r["release_sort"]), sql_str(r["category"]),
         sql_str(r["bricklink_id"]), sql_str(r["image_url"]), sql_str(r["confidence"]),
         sql_str(r["emoji"]), "true" if r["identified"] else "false", sql_str(r["note"]),
+        sql_str(r.get("history")), sql_str(r.get("inspiration")),
     ]) + ")")
 L.append(",\n".join(vals) + ";")
 with open("schema.sql", "w", encoding="utf-8") as f:
