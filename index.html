@@ -63,6 +63,11 @@
   .stat{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;backdrop-filter:blur(4px)}
   .stat b{font-family:"Fredoka",sans-serif;font-weight:700;font-size:clamp(20px,3.4vw,26px);line-height:1.1;display:block}
   .stat small{color:#94a0b2;font-size:11px;letter-spacing:.05em;text-transform:uppercase;font-weight:600}
+  .stat-sub{display:block;margin-top:6px;color:#e7b93a;font-size:11.5px;font-weight:700;letter-spacing:.03em}
+  .grid-sep{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:26px 2px 8px}
+  .grid-sep::before,.grid-sep::after{content:"";flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+  .grid-sep span{color:#64707f;font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+  .tbl-sep td{background:#f1f4f9;color:#64707f;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding:9px 14px!important}
 
   /* ---------- Controls ---------- */
   .controls{position:sticky;top:0;z-index:40;background:rgba(244,246,251,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line2);padding:12px 0}
@@ -187,7 +192,7 @@
     <span class="eyebrow">Personal Collection</span>
     <h1>My <span class="pop">LEGO</span> Minifigure Collection</h1>
     <div class="stats">
-      <div class="stat"><b id="sFigs">–</b><small>Figures</small></div>
+      <div class="stat"><b id="sFigs">–</b><small>Figures</small><span class="stat-sub" id="sBooks"></span></div>
       <div class="stat"><b id="sSeries">–</b><small>Series / Lines</small></div>
       <div class="stat"><b id="sYears">–</b><small>Years</small></div>
       <div class="stat"><b id="sCats">–</b><small>Categories</small></div>
@@ -343,11 +348,14 @@ async function load(){
 }
 function stats(){
   const minis=ALL.filter(f=>f.category!=='book');
+  const books=ALL.filter(f=>f.category==='book');
   document.getElementById('sFigs').textContent=minis.length;
+  const sb=document.getElementById('sBooks');
+  if(sb) sb.textContent=books.length?('📚 '+books.length+' Book'+(books.length!==1?'s':'')):'';
   document.getElementById('sSeries').textContent=new Set(minis.map(f=>f.series)).size;
-  const ys=ALL.map(f=>+yearOf(f)).filter(Boolean);
+  const ys=minis.map(f=>+yearOf(f)).filter(Boolean);
   document.getElementById('sYears').textContent=ys.length?Math.min(...ys)+'–'+Math.max(...ys):'–';
-  document.getElementById('sCats').textContent=new Set(ALL.map(f=>f.category)).size;
+  document.getElementById('sCats').textContent=new Set(minis.map(f=>f.category)).size;
 }
 function chips(){
   const defs=[["all","All",null],...Object.entries(CAT).map(([k,v])=>[k,v.label,v.color])];
@@ -360,24 +368,36 @@ function chips(){
   });
 }
 function filtered(){
-  let l=ALL.filter(f=>cat==="all"?f.category!=="book":f.category===cat);
-  if(query){const q=query.toLowerCase();l=l.filter(f=>[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(s=>s.toLowerCase().includes(q)));}
   const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
     'name':(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th),
     'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort};
-  return l.sort(s[sortBy]);
+  const q=query?query.toLowerCase():null;
+  const match=f=>!q||[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(x=>x.toLowerCase().includes(q));
+  const figs=ALL.filter(f=>f.category!=='book'&&match(f)).sort(s[sortBy]);
+  const books=ALL.filter(f=>f.category==='book'&&match(f)).sort(s[sortBy]);
+  if(cat==='book') return books;
+  if(cat==='all') return figs.concat(books);
+  return figs.filter(f=>f.category===cat);
 }
 function render(){
   const list=filtered();
-  document.getElementById('count').innerHTML=`Showing <b>${list.length}</b> figure${list.length!==1?'s':''}`+(cat!=="all"?` in <b>${CAT[cat].label}</b>`:'')+(query?` · “${query}”`:'');
+  const bk=list.filter(f=>f.category==='book').length, nb=list.length-bk;
+  const parts=[];
+  if(nb) parts.push(`<b>${nb}</b> figure${nb!==1?'s':''}`);
+  if(bk) parts.push(`<b>${bk}</b> book${bk!==1?'s':''}`);
+  let txt='Showing '+(parts.join(' · ')||'<b>0</b> items');
+  if(cat!=='all'&&cat!=='book'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
+  if(query) txt+=` · “${query}”`;
+  document.getElementById('count').innerHTML=txt;
   document.getElementById('content').innerHTML=view==="table"?tableHTML(list):gridHTML(list);
   document.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{lbList=list;lbIdx=+el.dataset.i;openLB();});
 }
 function tableHTML(list){
-  if(!list.length) return '<div class="loading">No figures match your filters.</div>';
+  if(!list.length) return '<div class="loading">No items match your filters.</div>';
   const rows=list.map((f,i)=>{
     const c=CAT[f.category]||{label:f.category||'—',color:'#9aa4b2'};
-    return `<tr data-i="${i}">
+    const sep=(f.category==='book'&&i>0&&list[i-1].category!=='book')?`<tr class="tbl-sep"><td colspan="6">📚 Books</td></tr>`:'';
+    return sep+`<tr data-i="${i}">
       <td class="idx">${i+1}</td>
       <td><div class="thumb">${pic(f)}</div></td>
       <td><div class="nm">${f.name_en||f.name_th}</div></td>
@@ -390,10 +410,11 @@ function tableHTML(list){
     <tbody>${rows}</tbody></table></div>`;
 }
 function gridHTML(list){
-  if(!list.length) return '<div class="loading">No figures match your filters.</div>';
+  if(!list.length) return '<div class="loading">No items match your filters.</div>';
   return `<div class="grid">`+list.map((f,i)=>{
     const c=CAT[f.category]||{label:f.category||'—',color:'#9aa4b2'};
-    return `<div class="g-card" data-i="${i}">
+    const sep=(f.category==='book'&&i>0&&list[i-1].category!=='book')?`<div class="grid-sep"><span>📚 Books</span></div>`:'';
+    return sep+`<div class="g-card" data-i="${i}">
       <div class="g-thumb"><span class="yr">${yearOf(f)}</span>${pic(f,1)}</div>
       <div class="g-body">
         <div class="g-name">${f.name_en||f.name_th}</div>
