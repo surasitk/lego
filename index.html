@@ -284,12 +284,13 @@ const CAT = {
   pop:    {label:"Pop Culture",         color:"#e11d2a"},
   pirate: {label:"Pirates",             color:"#0d9488"},
   other:  {label:"Other",               color:"#7d44cf"},
+  book:   {label:"Book",                color:"#475569"},
 };
 
 let ALL=[], view="grid", cat="all", sortBy="year-asc", query="", lbList=[], lbIdx=0;
 
 const blUrl = f => f.bricklink_id
-  ? `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${encodeURIComponent(f.bricklink_id)}`
+  ? `https://www.bricklink.com/v2/catalog/catalogitem.page?${f.category==='book'?'B':'M'}=${encodeURIComponent(f.bricklink_id)}`
   : `https://www.bricklink.com/v2/search.page?q=${encodeURIComponent(f.name_en||f.name_th)}&brand=1000`;
 const yearOf = f => f.release_sort ? String(f.release_sort).slice(0,4) : '';
 const THM={'ม.ค.':'Jan','ก.พ.':'Feb','มี.ค.':'Mar','เม.ย.':'Apr','พ.ค.':'May','มิ.ย.':'Jun','ก.ค.':'Jul','ส.ค.':'Aug','ก.ย.':'Sep','ต.ค.':'Oct','พ.ย.':'Nov','ธ.ค.':'Dec'};
@@ -312,14 +313,20 @@ async function load(){
   if(!data){ try{data=await(await fetch('./figures.json')).json();}catch(e){document.getElementById('content').innerHTML='<div class="loading">Could not load data.</div>';return;} }
   ALL=data.filter(f=>f.identified);
   // Content-based category normalization (resilient to DB sync)
-  const N2C={"Chicken Suit Guy":"animal","Penguin Boy":"animal","Shark Suit Guy":"animal","Giraffe Guy":"animal","Llama Costume Girl":"animal","Turkey Costume":"animal","Chicken Suit Boy":"animal","Peacock Costume":"animal","Banana Guy":"food","Hot Dog Man":"food","Corn Cob Guy":"food","Cactus Girl":"food","Watermelon Dude":"food","Pizza Costume Guy":"food","Peapod Costume Girl":"food","Popcorn Costume":"food","Strawberry Shortcake Girl":"food","Cake / Pie Costume Guy":"food","Party Banana Guy":"food","Mayor Solomon Fleck (Corn Cob)":"food","Classic King":"castle","Horse Knight King":"castle","Vampire Knight":"castle","Pharaoh":"myth","Wizard":"myth","Ocean King (Poseidon)":"myth","Hercules":"myth","Hades":"myth","Dragon Suit Guy":"myth","Green Dragon Costume":"myth","Buzz Lightyear":"pop","Woody":"pop","Batman — Batman Returns 1992":"pop","Catman":"pop","Mermaid Batman":"pop","James Bond (007)":"pop","Dominic Toretto":"pop","Brian O'Conner":"pop","President Business":"pop","Firework Guy":"other","Crayon Girl":"other","Magenta Crayon Costume Guy":"other"};
+  const N2C={"Chicken Suit Guy":"animal","Penguin Boy":"animal","Shark Suit Guy":"animal","Giraffe Guy":"animal","Llama Costume Girl":"animal","Turkey Costume":"animal","Chicken Suit Boy":"animal","Peacock Costume":"animal","Gorilla Suit Guy":"animal","Banana Guy":"food","Hot Dog Man":"food","Corn Cob Guy":"food","Cactus Girl":"food","Watermelon Dude":"food","Pizza Costume Guy":"food","Peapod Costume Girl":"food","Popcorn Costume":"food","Strawberry Shortcake Girl":"food","Cake / Pie Costume Guy":"food","Party Banana Guy":"food","Mayor Solomon Fleck (Corn Cob)":"food","Classic King":"castle","Horse Knight King":"castle","Vampire Knight":"castle","Pharaoh":"myth","Wizard":"myth","Ocean King (Poseidon)":"myth","Hercules":"myth","Hades":"myth","Dragon Suit Guy":"myth","Green Dragon Costume":"myth","Lizard Man":"myth","Buzz Lightyear":"pop","Woody":"pop","Batman — Batman Returns 1992":"pop","Catman":"pop","Mermaid Batman":"pop","James Bond (007)":"pop","Dominic Toretto":"pop","Brian O'Conner":"pop","President Business":"pop","Firework Guy":"other","Crayon Girl":"other","Magenta Crayon Costume Guy":"other"};
   ALL.forEach(f=>{ if(N2C[f.name_en]) f.category=N2C[f.name_en]; });
   // Extra figures (safety net; deduped — no-op once the DB has them)
   const EXTRA=[
     {name_en:"Egyptian Queen",name_th:"ราชินีอียิปต์",series:"Series 5",set_no:"8805",release_date:"2011",release_sort:20110902,category:"myth",bricklink_id:"col078",image_url:"https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/col078.png",emoji:"🐍",identified:true},
     {name_en:"Queen",name_th:"ราชินี",series:"Series 15",set_no:"71011",release_date:"Jan 2016",release_sort:20160103,category:"castle",bricklink_id:"col243",image_url:"https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/col243.png",emoji:"👸",identified:true},
     {name_en:"Pirate Captain (Redbeard)",name_th:"กัปตันโจรสลัด (Redbeard)",series:"Pirates",set_no:null,release_date:"1989",release_sort:19890101,category:"pirate",bricklink_id:"pi055",image_url:"https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/pi055.png",emoji:"🏴‍☠️",identified:true},
-    {name_en:"Imperial Soldier",name_th:"ทหารอิมพีเรียล (Bluecoat)",series:"Pirates",set_no:null,release_date:"1996",release_sort:19960101,category:"pirate",bricklink_id:"pi061",image_url:"https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/pi061.png",emoji:"🪖",identified:true}
+    {name_en:"Imperial Soldier",name_th:"ทหารอิมพีเรียล (Bluecoat)",series:"Pirates",set_no:null,release_date:"1996",release_sort:19960101,category:"pirate",bricklink_id:"pi061",image_url:"https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/pi061.png",emoji:"🪖",identified:true},
+    {name_en:"Gorilla Suit Guy",name_th:"ชายชุดกอริลลา",series:"Series 3",set_no:"8803",release_date:"2011",release_sort:20110302,category:"animal",bricklink_id:"col048",image_url:"https://img.bricklink.com/ItemImage/MN/0/col048.png",emoji:"🦍",identified:true,history:"Released in 2011 as part of LEGO Collectible Minifigures Series 3 (set 8803). The gorilla head is a removable mask that reveals a sweaty man's face underneath, and he comes with a banana.",inspiration:"A person in a full gorilla costume — a playful nod to costumed mascots and the classic movie ape suit."},
+    {name_en:"Lizard Man",name_th:"มนุษย์กิ้งก่า",series:"Series 5",set_no:"8805",release_date:"2011",release_sort:20110906,category:"myth",bricklink_id:"col070",image_url:"https://img.bricklink.com/ItemImage/MN/0/col070.png",emoji:"🦎",identified:true,history:"From LEGO Collectible Minifigures Series 5 (set 8805), released in 2011. Features a green reptilian head-hood with an alternate human face, a scaly muscular torso, plus a tail piece and a lizard-emblem shield.",inspiration:"A green lizard/dino costume in the spirit of creature-feature monsters like Godzilla — a man dressed up as a reptilian beast."},
+    {name_en:"Blacktron Astronaut",name_th:"นักบินอวกาศ Blacktron",series:"A Visual History (book)",set_no:"5010069",release_date:"2025",release_sort:20250902,category:"other",bricklink_id:"sp148",image_url:"https://img.bricklink.com/ItemImage/MN/0/sp148.png",emoji:"👨‍🚀",identified:true,history:"Exclusive minifigure included with the DK book 'LEGO Minifigure: A Visual History – Updated and Expanded' (LEGO 5010069), released September 2025. The most detailed Blacktron Classic Space figure to date — printed legs, the yellow Blacktron 'triforce' emblem on the torso and legs, and the Blacktron 1 logo on the black helmet.",inspiration:"The villainous Blacktron faction from LEGO's Classic Space era (late 1980s) — the sleek all-black astronauts that rivalled the Futuron spacemen."},
+    {name_en:"Crown King",name_th:"ราชา (Fantasy Era)",series:"Fantasy Era",set_no:"7188",release_date:"2009",release_sort:20090101,category:"castle",bricklink_id:"cas332",image_url:"https://img.bricklink.com/ItemImage/MN/0/cas332.png",emoji:"👑",identified:true,history:"The king of the good faction in LEGO Castle's Fantasy Era (2007–2009). Wears a blue-and-gold royal tunic with a crown emblem, gold shoulder armour, a cape and an ornate crown. Appears in sets such as 7188 King's Carriage Ambush.",inspiration:"A classic fairy-tale medieval king leading his knights into battle."},
+    {name_en:"Bunny Suit Guy",name_th:"ชายชุดกระต่าย",series:"Series 7",set_no:"8831",release_date:"2012",release_sort:20120701,category:"animal",bricklink_id:"col099",image_url:"https://img.bricklink.com/ItemImage/MN/0/col099.png",emoji:"🐰",identified:true,history:"From LEGO Collectible Minifigures Series 7 (set 8831), released in 2012. Comes with a carrot; the bunny hood has pink inner ears and reveals a cheerful face. One of the earliest and most beloved animal-costume figures.",inspiration:"A person in a fluffy white bunny costume with a pink egg-shaped belly — an Easter-bunny mascot."},
+    {name_en:"LEGO Minifigure: A Visual History",name_th:"หนังสือ LEGO Minifigure: A Visual History",series:"DK — Updated & Expanded",set_no:"5010069",release_date:"2025",release_sort:20250901,category:"book",type:"book",bricklink_id:"b25other06",image_url:"https://img.bricklink.com/ItemImage/BN/0/b25other06.png",emoji:"📖",identified:true,history:"DK's 'LEGO Minifigure: A Visual History – Updated and Expanded' (2025) — a 304-page hardcover covering more than 2,500 minifigures made since 1978. Bundled with the exclusive Blacktron Astronaut minifigure.",inspiration:"The definitive illustrated reference on the LEGO minifigure, from its 1978 debut to today."}
   ];
   const _have=new Set(ALL.map(f=>f.name_en));
   EXTRA.forEach(e=>{ if(!_have.has(e.name_en)) ALL.push(e); });
@@ -335,8 +342,9 @@ async function load(){
   stats(); chips(); render();
 }
 function stats(){
-  document.getElementById('sFigs').textContent=ALL.length;
-  document.getElementById('sSeries').textContent=new Set(ALL.map(f=>f.series)).size;
+  const minis=ALL.filter(f=>f.category!=='book');
+  document.getElementById('sFigs').textContent=minis.length;
+  document.getElementById('sSeries').textContent=new Set(minis.map(f=>f.series)).size;
   const ys=ALL.map(f=>+yearOf(f)).filter(Boolean);
   document.getElementById('sYears').textContent=ys.length?Math.min(...ys)+'–'+Math.max(...ys):'–';
   document.getElementById('sCats').textContent=new Set(ALL.map(f=>f.category)).size;
@@ -352,7 +360,7 @@ function chips(){
   });
 }
 function filtered(){
-  let l=ALL.filter(f=>cat==="all"||f.category===cat);
+  let l=ALL.filter(f=>cat==="all"?f.category!=="book":f.category===cat);
   if(query){const q=query.toLowerCase();l=l.filter(f=>[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(s=>s.toLowerCase().includes(q)));}
   const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
     'name':(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th),
