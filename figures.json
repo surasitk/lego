@@ -1,37 +1,37 @@
 [
   {
-    "name_th": "กัปตันโจรสลัด (Redbeard)",
-    "name_en": "Pirate Captain (Redbeard)",
+    "name_th": "กัปตันโจรสลัด",
+    "name_en": "Pirate Captain",
     "series": "Pirates",
     "set_no": null,
     "release_date": "1989",
     "release_sort": 19890101,
     "category": "pirate",
-    "bricklink_id": "pi055",
-    "image_url": "https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/pi055.png",
+    "bricklink_id": "pi022",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/pi022.png",
     "confidence": "sure",
     "emoji": "🏴‍☠️",
     "identified": true,
     "note": null,
-    "history": "A classic LEGO Pirates captain, from the original 1989 Pirates theme.",
-    "inspiration": "A swashbuckling pirate captain with skull-and-crossbones hat, hook hand and peg leg."
+    "history": "A classic LEGO Pirates captain from the original Pirates theme (late 1980s to 1990s): black bicorne with skull and crossbones, a striped shirt with knife and baldric, hook hand and peg leg.",
+    "inspiration": "The archetypal swashbuckling pirate captain."
   },
   {
     "name_th": "ทหารอิมพีเรียล (Bluecoat)",
     "name_en": "Imperial Soldier",
-    "series": "Pirates",
+    "series": "Pirates (Imperial Soldiers)",
     "set_no": null,
     "release_date": "1996",
     "release_sort": 19960101,
     "category": "pirate",
-    "bricklink_id": "pi061",
-    "image_url": "https://qmmopgyevfuztpqaynww.supabase.co/storage/v1/object/public/minifigs/pi061.png",
+    "bricklink_id": "pi063",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/pi063.png",
     "confidence": "sure",
     "emoji": "🪖",
     "identified": true,
     "note": null,
-    "history": "LEGO Pirates 'Bluecoats' Imperial Soldiers faction (mid-1990s).",
-    "inspiration": "A Napoleonic-style naval soldier who pursued LEGO's pirates."
+    "history": "An officer of the Imperial Soldiers (the blue-coated \"Bluecoats\") from LEGO Pirates, mid-1990s. Wears a black bicorne, gold epaulettes and a blue coat with white cross-belts.",
+    "inspiration": "A Napoleonic-era naval officer who hunted pirates on the high seas."
   },
   {
     "name_th": "ราชา (Fantasy Era)",
