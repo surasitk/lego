@@ -289,13 +289,14 @@ const CAT = {
   pop:    {label:"Pop Culture",         color:"#e11d2a"},
   pirate: {label:"Pirates",             color:"#0d9488"},
   other:  {label:"Other",               color:"#7d44cf"},
+  set:    {label:"Set",                 color:"#c026a3"},
   book:   {label:"Book",                color:"#475569"},
 };
 
 let ALL=[], view="grid", cat="all", sortBy="year-asc", query="", lbList=[], lbIdx=0;
 
 const blUrl = f => f.bricklink_id
-  ? `https://www.bricklink.com/v2/catalog/catalogitem.page?${f.category==='book'?'B':'M'}=${encodeURIComponent(f.bricklink_id)}`
+  ? `https://www.bricklink.com/v2/catalog/catalogitem.page?${f.category==='book'?'B':f.category==='set'?'S':'M'}=${encodeURIComponent(f.bricklink_id)}`
   : `https://www.bricklink.com/v2/search.page?q=${encodeURIComponent(f.name_en||f.name_th)}&brand=1000`;
 const yearOf = f => f.release_sort ? String(f.release_sort).slice(0,4) : '';
 const THM={'ม.ค.':'Jan','ก.พ.':'Feb','มี.ค.':'Mar','เม.ย.':'Apr','พ.ค.':'May','มิ.ย.':'Jun','ก.ค.':'Jul','ส.ค.':'Aug','ก.ย.':'Sep','ต.ค.':'Oct','พ.ย.':'Nov','ธ.ค.':'Dec'};
@@ -347,11 +348,12 @@ async function load(){
   stats(); chips(); render();
 }
 function stats(){
-  const minis=ALL.filter(f=>f.category!=='book');
+  const minis=ALL.filter(f=>f.category!=='book'&&f.category!=='set');
+  const sets=ALL.filter(f=>f.category==='set');
   const books=ALL.filter(f=>f.category==='book');
   document.getElementById('sFigs').textContent=minis.length;
   const sb=document.getElementById('sBooks');
-  if(sb) sb.textContent=books.length?('📚 '+books.length+' Book'+(books.length!==1?'s':'')):'';
+  if(sb){ const t=[]; if(sets.length)t.push('🧱 '+sets.length+' Set'+(sets.length!==1?'s':'')); if(books.length)t.push('📚 '+books.length+' Book'+(books.length!==1?'s':'')); sb.textContent=t.join('  ·  '); }
   document.getElementById('sSeries').textContent=new Set(minis.map(f=>f.series)).size;
   const ys=minis.map(f=>+yearOf(f)).filter(Boolean);
   document.getElementById('sYears').textContent=ys.length?Math.min(...ys)+'–'+Math.max(...ys):'–';
@@ -373,20 +375,23 @@ function filtered(){
     'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort};
   const q=query?query.toLowerCase():null;
   const match=f=>!q||[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(x=>x.toLowerCase().includes(q));
-  const figs=ALL.filter(f=>f.category!=='book'&&match(f)).sort(s[sortBy]);
+  const figs=ALL.filter(f=>f.category!=='book'&&f.category!=='set'&&match(f)).sort(s[sortBy]);
+  const sets=ALL.filter(f=>f.category==='set'&&match(f)).sort(s[sortBy]);
   const books=ALL.filter(f=>f.category==='book'&&match(f)).sort(s[sortBy]);
   if(cat==='book') return books;
-  if(cat==='all') return figs.concat(books);
+  if(cat==='set') return sets;
+  if(cat==='all') return figs.concat(sets).concat(books);
   return figs.filter(f=>f.category===cat);
 }
 function render(){
   const list=filtered();
-  const bk=list.filter(f=>f.category==='book').length, nb=list.length-bk;
+  const bk=list.filter(f=>f.category==='book').length, st=list.filter(f=>f.category==='set').length, nb=list.length-bk-st;
   const parts=[];
   if(nb) parts.push(`<b>${nb}</b> figure${nb!==1?'s':''}`);
+  if(st) parts.push(`<b>${st}</b> set${st!==1?'s':''}`);
   if(bk) parts.push(`<b>${bk}</b> book${bk!==1?'s':''}`);
   let txt='Showing '+(parts.join(' · ')||'<b>0</b> items');
-  if(cat!=='all'&&cat!=='book'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
+  if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
   if(query) txt+=` · “${query}”`;
   document.getElementById('count').innerHTML=txt;
   document.getElementById('content').innerHTML=view==="table"?tableHTML(list):gridHTML(list);
@@ -396,7 +401,9 @@ function tableHTML(list){
   if(!list.length) return '<div class="loading">No items match your filters.</div>';
   const rows=list.map((f,i)=>{
     const c=CAT[f.category]||{label:f.category||'—',color:'#9aa4b2'};
-    const sep=(f.category==='book'&&i>0&&list[i-1].category!=='book')?`<tr class="tbl-sep"><td colspan="6">📚 Books</td></tr>`:'';
+    let sep='';
+    if(f.category==='set'&&i>0&&list[i-1].category!=='set') sep=`<tr class="tbl-sep"><td colspan="6">🧱 Sets</td></tr>`;
+    else if(f.category==='book'&&i>0&&list[i-1].category!=='book') sep=`<tr class="tbl-sep"><td colspan="6">📚 Books</td></tr>`;
     return sep+`<tr data-i="${i}">
       <td class="idx">${i+1}</td>
       <td><div class="thumb">${pic(f)}</div></td>
@@ -413,7 +420,9 @@ function gridHTML(list){
   if(!list.length) return '<div class="loading">No items match your filters.</div>';
   return `<div class="grid">`+list.map((f,i)=>{
     const c=CAT[f.category]||{label:f.category||'—',color:'#9aa4b2'};
-    const sep=(f.category==='book'&&i>0&&list[i-1].category!=='book')?`<div class="grid-sep"><span>📚 Books</span></div>`:'';
+    let sep='';
+    if(f.category==='set'&&i>0&&list[i-1].category!=='set') sep=`<div class="grid-sep"><span>🧱 Sets</span></div>`;
+    else if(f.category==='book'&&i>0&&list[i-1].category!=='book') sep=`<div class="grid-sep"><span>📚 Books</span></div>`;
     return sep+`<div class="g-card" data-i="${i}">
       <div class="g-thumb"><span class="yr">${yearOf(f)}</span>${pic(f,1)}</div>
       <div class="g-body">
