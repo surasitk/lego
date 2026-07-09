@@ -285,12 +285,13 @@ const SUPABASE_ANON_KEY = "sb_publishable_kGOwN1irW29qdPoTl6DNcQ_CIVLpe5v";
 const CAT = {
   animal: {label:"Animal",              color:"#1aa053"},
   food:   {label:"Fancy Suits",         color:"#f07a17"},
+  plant:  {label:"Plants",              color:"#4d7c0f"},
   castle: {label:"Castle & Knights",    color:"#a6791e"},
   myth:   {label:"Mythology & Fantasy", color:"#0a6fd1"},
   pop:    {label:"Pop Culture",         color:"#e11d2a"},
   pirate: {label:"Pirates",             color:"#0d9488"},
   space:  {label:"Space",               color:"#4f46e5"},
-  other:  {label:"Other",               color:"#7d44cf"},
+  other:  {label:"Science & Tech",      color:"#7d44cf"},
   set:    {label:"Set",                 color:"#c026a3"},
   book:   {label:"Book",                color:"#475569"},
 };
@@ -321,7 +322,7 @@ async function load(){
   if(!data){ try{data=await(await fetch('./figures.json')).json();}catch(e){document.getElementById('content').innerHTML='<div class="loading">Could not load data.</div>';return;} }
   ALL=data.filter(f=>f.identified);
   // Content-based category normalization (resilient to DB sync)
-  const N2C={"Chicken Suit Guy":"animal","Penguin Boy":"animal","Shark Suit Guy":"animal","Giraffe Guy":"animal","Llama Costume Girl":"animal","Turkey Costume":"animal","Chicken Suit Boy":"animal","Peacock Costume":"animal","Gorilla Suit Guy":"animal","Banana Guy":"food","Hot Dog Man":"food","Corn Cob Guy":"food","Cactus Girl":"food","Watermelon Dude":"food","Pizza Costume Guy":"food","Peapod Costume Girl":"food","Popcorn Costume":"food","Strawberry Shortcake Girl":"food","Cake / Pie Costume Guy":"food","Party Banana Guy":"food","Mayor Solomon Fleck (Corn Cob)":"food","Classic King":"castle","Horse Knight King":"castle","Vampire Knight":"castle","Pharaoh":"myth","Wizard":"castle","Ocean King (Poseidon)":"myth","Hercules":"myth","Hades":"myth","Dragon Suit Guy":"animal","Green Dragon Costume":"myth","Lizard Man":"animal","Buzz Lightyear":"pop","Woody":"pop","Batman — Batman Returns 1992":"pop","Catman":"pop","Mermaid Batman":"pop","James Bond (007)":"pop","Dominic Toretto":"pop","Brian O'Conner":"pop","President Business":"pop","Firework Guy":"other","Crayon Girl":"other","Magenta Crayon Costume Guy":"other","Blacktron Astronaut":"space"};
+  const N2C={"Chicken Suit Guy":"animal","Penguin Boy":"animal","Shark Suit Guy":"animal","Giraffe Guy":"animal","Llama Costume Girl":"animal","Turkey Costume":"animal","Chicken Suit Boy":"animal","Peacock Costume":"animal","Gorilla Suit Guy":"animal","Banana Guy":"food","Hot Dog Man":"food","Corn Cob Guy":"food","Cactus Girl":"plant","Watermelon Dude":"food","Pizza Costume Guy":"food","Peapod Costume Girl":"food","Popcorn Costume":"food","Strawberry Shortcake Girl":"food","Cake / Pie Costume Guy":"food","Party Banana Guy":"food","Mayor Solomon Fleck (Corn Cob)":"food","Classic King":"castle","Horse Knight King":"castle","Vampire Knight":"castle","Pharaoh":"myth","Wizard":"castle","Ocean King (Poseidon)":"myth","Hercules":"myth","Hades":"myth","Dragon Suit Guy":"myth","Green Dragon Costume":"myth","Lizard Man":"animal","Buzz Lightyear":"pop","Woody":"pop","Batman — Batman Returns 1992":"pop","Catman":"pop","Mermaid Batman":"pop","James Bond (007)":"pop","Dominic Toretto":"pop","Brian O'Conner":"pop","President Business":"pop","Firework Guy":"other","Crayon Girl":"other","Magenta Crayon Costume Guy":"other","Blacktron Astronaut":"space"};
   ALL.forEach(f=>{ if(N2C[f.name_en]) f.category=N2C[f.name_en]; });
   // Extra figures (safety net; deduped — no-op once the DB has them)
   const EXTRA=[
