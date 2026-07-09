@@ -18,8 +18,8 @@
     "inspiration": null
   },
   {
-    "name_th": "แบล็คฟอลคอน (เกราะอก)",
-    "name_en": "Black Falcon (Breastplate)",
+    "name_th": "อัศวินดำ",
+    "name_en": "Black Knight",
     "series": "Castle (Black Falcons)",
     "set_no": "6035",
     "release_date": "1987",
@@ -54,12 +54,12 @@
     "inspiration": "A medieval castle soldier of the Black Falcons faction."
   },
   {
-    "name_th": "แบล็คฟอลคอน (ทหาร)",
-    "name_en": "Black Falcon (Soldier)",
+    "name_th": "การ์ดเหยี่ยวดำ",
+    "name_en": "Black Falcon Guard",
     "series": "Castle (Black Falcons)",
     "set_no": "6103",
-    "release_date": "1988",
-    "release_sort": 19880102,
+    "release_date": "1985",
+    "release_sort": 19850101,
     "category": "castle",
     "bricklink_id": "cas099",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas099.png",
@@ -72,12 +72,12 @@
     "inspiration": "A knight of the Black Falcons castle faction."
   },
   {
-    "name_th": "ครูเสด (สิงโต)",
-    "name_en": "Crusader (Lion)",
-    "series": "Castle (Crusaders)",
+    "name_th": "อัศวินสิงห์ พลธนู",
+    "name_en": "Lion Knight Archer",
+    "series": "Castle (Lion Knights)",
     "set_no": "6103",
-    "release_date": "1988",
-    "release_sort": 19880103,
+    "release_date": "1984",
+    "release_sort": 19840201,
     "category": "castle",
     "bricklink_id": "cas119",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas119.png",
@@ -90,12 +90,12 @@
     "inspiration": "A knight of the Crusaders / Lion Knights castle faction."
   },
   {
-    "name_th": "ฟอเรสต์แมน (สายธนู)",
-    "name_en": "Forestman (Quiver)",
+    "name_th": "ฟอเรสต์เตอร์ถุงเหรียญ",
+    "name_en": "Forester with Pouch",
     "series": "Castle (Forestmen)",
     "set_no": "6103",
-    "release_date": "1988",
-    "release_sort": 19880104,
+    "release_date": "1987",
+    "release_sort": 19870202,
     "category": "castle",
     "bricklink_id": "cas123a",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas123a.png",
@@ -108,12 +108,12 @@
     "inspiration": "Robin Hood's merry outlaws of the forest."
   },
   {
-    "name_th": "ฟอเรสต์แมน (หมวกน้ำตาล)",
-    "name_en": "Forestman (Brown Hat)",
+    "name_th": "หัวหน้าฟอเรสต์เตอร์",
+    "name_en": "Lead Forester",
     "series": "Castle (Forestmen)",
     "set_no": "6103",
-    "release_date": "1988",
-    "release_sort": 19880105,
+    "release_date": "1987",
+    "release_sort": 19870201,
     "category": "castle",
     "bricklink_id": "cas139",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas139.png",
@@ -126,12 +126,12 @@
     "inspiration": "Robin Hood's merry outlaws of the forest."
   },
   {
-    "name_th": "ชาวบ้าน (Peasant)",
-    "name_en": "Peasant",
+    "name_th": "นักลักลอบ",
+    "name_en": "Smuggler",
     "series": "Castle",
     "set_no": "6103",
-    "release_date": "1988",
-    "release_sort": 19880106,
+    "release_date": "1989",
+    "release_sort": 19890101,
     "category": "castle",
     "bricklink_id": "cas553",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas553.png",
@@ -323,12 +323,12 @@
     "type": "minifigure"
   },
   {
-    "name_th": "ทหารอิมพีเรียล (Bluecoat)",
-    "name_en": "Imperial Soldier",
+    "name_th": "นายทหารอิมพีเรียล",
+    "name_en": "Imperial Officer",
     "series": "Pirates (Imperial Soldiers)",
     "set_no": null,
-    "release_date": "1996",
-    "release_sort": 19960101,
+    "release_date": "1989",
+    "release_sort": 19890201,
     "category": "pirate",
     "bricklink_id": "pi063",
     "image_url": "https://img.bricklink.com/ItemImage/MN/0/pi063.png",
@@ -376,8 +376,8 @@
     "type": "minifigure"
   },
   {
-    "name_th": "ราชา (Fantasy Era)",
-    "name_en": "Crown King",
+    "name_th": "ราชามงกุฎ (ผ้าคลุม)",
+    "name_en": "Crown King with Cape",
     "series": "Fantasy Era",
     "set_no": "7188",
     "release_date": "2007",
@@ -1347,8 +1347,8 @@
     "inspiration": "The champion of the Horse Knights, the heroic 2025 Castle faction led by the Horse Knight King."
   },
   {
-    "name_en": "Crown Knight (Breastplate)",
-    "name_th": "อัศวินมงกุฎ (เกราะอก)",
+    "name_en": "Crown Knight with Visor",
+    "name_th": "อัศวินมงกุฎ (บังหน้า)",
     "series": "Castle Fantasy Era",
     "set_no": null,
     "release_date": "2007",
