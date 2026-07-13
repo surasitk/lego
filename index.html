@@ -87,6 +87,10 @@
   .chip:hover{border-color:#b9c2d0}
   .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
   .chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:middle}
+  .chips-toggle{display:none;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:11px;font-family:"Inter";font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line2);background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:12px;box-shadow:var(--shadow-sm)}
+  .chips-caret{transition:transform .2s;font-size:12px;color:var(--muted)}
+  .chips-toggle.open .chips-caret{transform:rotate(180deg)}
+  @media(max-width:760px){.chips-toggle{display:flex}.chips{margin-top:8px}.chips.collapsed{display:none}}
 
   main{padding:24px 0 70px}
   .count{font-size:13px;color:var(--muted);margin-bottom:14px;font-weight:500}
@@ -219,6 +223,7 @@
         <button data-v="grid" class="on">▦ Gallery</button>
       </div>
     </div>
+    <button class="chips-toggle" id="chipsToggle" type="button" aria-expanded="false"><span id="chipsToggleLabel">Category: All categories</span><span class="chips-caret">▾</span></button>
     <div class="chips" id="chips"></div>
   </div>
 </div>
@@ -364,15 +369,31 @@ function stats(){
   document.getElementById('sYears').textContent=ys.length?Math.min(...ys)+'–'+Math.max(...ys):'–';
   document.getElementById('sCats').textContent=new Set(minis.map(f=>f.category)).size;
 }
+const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
+function chipsLabel(){
+  const lbl=document.getElementById('chipsToggleLabel');if(!lbl)return;
+  lbl.textContent='Category: '+(cat==='all'?'All categories':(CAT[cat]?CAT[cat].label:cat));
+}
+function collapseChips(){
+  const box=document.getElementById('chips'),btn=document.getElementById('chipsToggle');
+  if(box)box.classList.add('collapsed');
+  if(btn){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+}
 function chips(){
   const defs=[["all","All",null],...Object.entries(CAT).map(([k,v])=>[k,v.label,v.color])];
   const el=document.getElementById('chips');el.innerHTML='';
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
     b.innerHTML=(col?`<span class="dot" style="background:${col}"></span>`:"")+label;
-    b.onclick=()=>{cat=id;[...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();};
+    b.onclick=()=>{cat=id;[...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();chipsLabel();if(isMobile())collapseChips();};
     el.appendChild(b);
   });
+  const btn=document.getElementById('chipsToggle');
+  if(btn&&!btn._wired){btn._wired=true;
+    btn.onclick=()=>{const collapsed=el.classList.toggle('collapsed');btn.classList.toggle('open',!collapsed);btn.setAttribute('aria-expanded',String(!collapsed));};
+    if(isMobile())el.classList.add('collapsed');
+  }
+  chipsLabel();
 }
 function filtered(){
   const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
