@@ -27,6 +27,10 @@
 <meta name="apple-mobile-web-app-title" content="LEGO Collection">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://img.bricklink.com" crossorigin>
+<link rel="preconnect" href="https://qmmopgyevfuztpqaynww.supabase.co" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://img.bricklink.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -282,7 +286,6 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = "https://qmmopgyevfuztpqaynww.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_kGOwN1irW29qdPoTl6DNcQ_CIVLpe5v";
@@ -313,18 +316,16 @@ const yearOf = f => f.release_sort ? String(f.release_sort).slice(0,4) : '';
 const THM={'ม.ค.':'Jan','ก.พ.':'Feb','มี.ค.':'Mar','เม.ย.':'Apr','พ.ค.':'May','มิ.ย.':'Jun','ก.ค.':'Jul','ส.ค.':'Aug','ก.ย.':'Sep','ต.ค.':'Oct','พ.ย.':'Nov','ธ.ค.':'Dec'};
 const enDate = d => { if(!d) return '—'; for(const k in THM) d=d.split(k).join(THM[k]); return d; };
 function pic(f, big){
-  if(f.image_url) return `<img loading="lazy" src="${f.image_url}" alt="${(f.name_en||f.name_th)}" onerror="this.parentNode.innerHTML='<span class=&quot;emo&quot;>${f.emoji||'🧱'}</span>'">`;
+  if(f.image_url) return `<img loading="lazy" decoding="async" src="${f.image_url}" alt="${(f.name_en||f.name_th)}" onerror="this.parentNode.innerHTML='<span class=&quot;emo&quot;>${f.emoji||'🧱'}</span>'">`;
   return `<span class="emo">${f.emoji||'🧱'}</span>`;
 }
 
 async function load(){
   let data=null, live=false;
-  if(window.supabase && !SUPABASE_ANON_KEY.startsWith("__")){
+  if(!SUPABASE_ANON_KEY.startsWith("__")){
     try{
-      const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-      const {data:rows,error}=await sb.from('minifigures').select('*').order('release_sort',{ascending:true});
-      if(error) throw error;
-      if(rows&&rows.length){data=rows;live=true;}
+      const r=await fetch(`${SUPABASE_URL}/rest/v1/minifigures?select=*&order=release_sort.asc`,{headers:{apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY}});
+      if(r.ok){const rows=await r.json(); if(rows&&rows.length){data=rows;live=true;}}
     }catch(e){console.warn('Supabase failed, using local:',e.message);}
   }
   if(!data){ try{data=await(await fetch('./figures.json')).json();}catch(e){document.getElementById('content').innerHTML='<div class="loading">Could not load data.</div>';return;} }
