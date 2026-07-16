@@ -232,6 +232,8 @@
   /* ---------- Theme toggle ---------- */
   .theme-toggle{width:38px;height:38px;flex:0 0 auto;border-radius:999px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow-sm);display:inline-flex;align-items:center;justify-content:center;transition:.15s}
   .theme-toggle:hover{border-color:#b9c2d0;transform:translateY(-1px)}
+  .skin-toggle{flex:0 0 auto;height:38px;padding:0 13px;border-radius:999px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);cursor:pointer;font-family:"Inter";font-weight:600;font-size:13px;box-shadow:var(--shadow-sm);display:inline-flex;align-items:center;gap:5px;transition:.15s;white-space:nowrap}
+  .skin-toggle:hover{border-color:#b9c2d0;transform:translateY(-1px)}
 
   /* ---------- Dark mode ---------- */
   html[data-theme=dark]{
@@ -244,6 +246,61 @@
   html[data-theme=dark] .g-thumb,html[data-theme=dark] .tl-thumb{background:linear-gradient(160deg,#232c38,#1a212b)}
   html[data-theme=dark] .controls{background:rgba(20,26,34,.85)}
   html[data-theme=dark] .badge-vin{background:#7a5620;color:#ffe9b0}
+
+  /* ---------- Minimal skin (Figma-style) ---------- */
+  html[data-skin=minimal]{
+    --bg:#ffffff; --bg2:#fafafa; --paper:#ffffff; --ink:#111111; --muted:#6b6b6b; --faint:#9b9b9b;
+    --line:#e9e9e9; --line2:#e0e0e0;
+    --shadow-sm:none; --shadow:none; --shadow-lg:0 10px 34px -14px rgba(0,0,0,.28);
+    --r:8px; --r-lg:10px;
+  }
+  html[data-skin=minimal] header.hero{background:#fff;color:#111;padding:clamp(36px,5vw,60px) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--line)}
+  html[data-skin=minimal] .hero::after{display:none}
+  html[data-skin=minimal] .eyebrow{font-family:"Inter",sans-serif;color:#6b6b6b;letter-spacing:.14em;gap:0}
+  html[data-skin=minimal] .eyebrow::before{display:none}
+  html[data-skin=minimal] h1{font-family:"Inter",sans-serif;font-weight:700;letter-spacing:-.035em;color:#111;max-width:20ch}
+  html[data-skin=minimal] h1 .pop{color:#111}
+  html[data-skin=minimal] .lede{color:#6b6b6b}
+  html[data-skin=minimal] .stat{background:#fff;border:1px solid var(--line);border-radius:8px;backdrop-filter:none}
+  html[data-skin=minimal] .stat b{font-family:"Inter",sans-serif;color:#111;letter-spacing:-.02em}
+  html[data-skin=minimal] .stat small{color:#8a8a8a}
+  html[data-skin=minimal] .stat-sub{color:#6b6b6b}
+  html[data-skin=minimal] .controls{background:rgba(255,255,255,.9);border-bottom:1px solid var(--line)}
+  html[data-skin=minimal] .search,html[data-skin=minimal] select.sort{border-radius:8px}
+  html[data-skin=minimal] .search:focus-within{border-color:#111;box-shadow:0 0 0 2px rgba(0,0,0,.08)}
+  html[data-skin=minimal] .seg{border-radius:8px;padding:2px}
+  html[data-skin=minimal] .seg button{border-radius:6px}
+  html[data-skin=minimal] .seg button.on{background:#111;color:#fff}
+  html[data-skin=minimal] .chip{border-radius:6px;padding-top:7px}
+  html[data-skin=minimal] .chip::before{display:none}
+  html[data-skin=minimal] .chip.on{background:#111;border-color:#111}
+  html[data-skin=minimal] .theme-toggle,html[data-skin=minimal] .skin-toggle,html[data-skin=minimal] .chips-toggle{border-radius:8px}
+  html[data-skin=minimal] .g-card{border:1px solid var(--line);border-radius:10px}
+  html[data-skin=minimal] .g-card:hover{transform:translateY(-2px);border-color:#111}
+  html[data-skin=minimal] .g-thumb{background:#fafafa}
+  html[data-skin=minimal] .g-thumb .yr{background:#111;color:#fff;border-radius:4px;font-family:"Inter",sans-serif;font-weight:600}
+  html[data-skin=minimal] .badge{border-radius:4px}
+  html[data-skin=minimal] .badge-vin{background:#f3f3f3;color:#555}
+  html[data-skin=minimal] .badge-grail{background:#111;color:#fff}
+  html[data-skin=minimal] .badge-dupe{background:#f3f3f3;color:#555}
+  html[data-skin=minimal] .grid.shelf{gap:16px}
+  html[data-skin=minimal] .grid.shelf .g-card::after{display:none}
+  html[data-skin=minimal] .tl-dot{background:#111;border-color:#fff}
+  html[data-skin=minimal] .tl-year{font-family:"Inter",sans-serif;color:#111}
+  html[data-skin=minimal] .tl-thumb{background:#fafafa;border-radius:8px}
+  html[data-skin=minimal] .grid-sep span{color:#8a8a8a}
+  html[data-skin=minimal] .tbl-sep td{background:#fafafa;color:#8a8a8a}
+  /* Minimal + dark */
+  html[data-skin=minimal][data-theme=dark]{--bg:#0d0d0d;--bg2:#141414;--paper:#161616;--ink:#f0f0f0;--muted:#9a9a9a;--faint:#6f6f6f;--line:#262626;--line2:#303030}
+  html[data-skin=minimal][data-theme=dark] header.hero{background:#0d0d0d;color:#f0f0f0;border-bottom-color:#262626}
+  html[data-skin=minimal][data-theme=dark] h1,html[data-skin=minimal][data-theme=dark] h1 .pop,html[data-skin=minimal][data-theme=dark] .stat b{color:#f0f0f0}
+  html[data-skin=minimal][data-theme=dark] .stat{background:#161616}
+  html[data-skin=minimal][data-theme=dark] .g-thumb,html[data-skin=minimal][data-theme=dark] .tl-thumb{background:#1c1c1c}
+  html[data-skin=minimal][data-theme=dark] .controls{background:rgba(13,13,13,.9)}
+  html[data-skin=minimal][data-theme=dark] .chip.on,html[data-skin=minimal][data-theme=dark] .seg button.on{background:#f0f0f0;color:#111}
+  html[data-skin=minimal][data-theme=dark] .g-thumb .yr,html[data-skin=minimal][data-theme=dark] .badge-grail{background:#f0f0f0;color:#111}
+  html[data-skin=minimal][data-theme=dark] .g-card:hover{border-color:#f0f0f0}
+  html[data-skin=minimal][data-theme=dark] .tl-dot{background:#f0f0f0;border-color:#0d0d0d}
 </style>
 </head>
 <body>
@@ -279,6 +336,7 @@
         <button data-v="timeline">📅 Timeline</button>
         <button data-v="shelf">🗄️ Shelf</button>
       </div>
+      <button class="skin-toggle" id="skinToggle" type="button" title="Switch UI style">✨ Minimal</button>
       <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle dark mode">🌙</button>
     </div>
     <button class="chips-toggle" id="chipsToggle" type="button" aria-expanded="false"><span id="chipsToggleLabel">Category: All categories</span><span class="chips-caret">▾</span></button>
@@ -568,6 +626,9 @@ document.getElementById('view').addEventListener('click',e=>{const b=e.target.cl
 function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('themeToggle');if(b)b.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('lego-theme',t);}catch(e){}}
 (function(){let t='light';try{t=localStorage.getItem('lego-theme')||'light';}catch(e){}applyTheme(t);})();
 document.getElementById('themeToggle').addEventListener('click',()=>{applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
+function applySkin(s){document.documentElement.setAttribute('data-skin',s);const b=document.getElementById('skinToggle');if(b)b.textContent=s==='minimal'?'🧱 Classic':'✨ Minimal';try{localStorage.setItem('lego-skin',s);}catch(e){}}
+(function(){let s='classic';try{s=localStorage.getItem('lego-skin')||'classic';}catch(e){}applySkin(s);})();
+document.getElementById('skinToggle').addEventListener('click',()=>{applySkin(document.documentElement.getAttribute('data-skin')==='minimal'?'classic':'minimal');});
 load();
 </script>
 </body>
