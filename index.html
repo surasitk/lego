@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- build: sets-category + set-minifig-extract (rev2) -->
-<html lang="en">
+<html lang="en" data-skin="minimal" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <!-- Google tag (gtag.js) -->
@@ -660,7 +660,7 @@ function applyTheme(t){document.documentElement.setAttribute('data-theme',t);con
 (function(){let t='light';try{t=localStorage.getItem('lego-theme')||'light';}catch(e){}applyTheme(t);})();
 document.getElementById('themeToggle').addEventListener('click',()=>{applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
 function applySkin(s){document.documentElement.setAttribute('data-skin',s);const b=document.getElementById('skinToggle');if(b)b.innerHTML=s==='minimal'?'🧱 <span class="lbl">Classic</span>':'✨ <span class="lbl">Minimal</span>';try{localStorage.setItem('lego-skin',s);}catch(e){}}
-(function(){let s='classic';try{s=localStorage.getItem('lego-skin')||'classic';}catch(e){}applySkin(s);})();
+(function(){let s='minimal';try{s=localStorage.getItem('lego-skin')||'minimal';}catch(e){}applySkin(s);})();
 document.getElementById('skinToggle').addEventListener('click',()=>{applySkin(document.documentElement.getAttribute('data-skin')==='minimal'?'classic':'minimal');});
 (function(){
   const bar=document.querySelector('.controls'), top=document.getElementById('toTop');
