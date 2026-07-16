@@ -51,7 +51,7 @@
   img{max-width:100%}
 
   /* ---------- Hero ---------- */
-  header.hero{position:relative;overflow:hidden;color:#fff;padding:clamp(40px,7vw,68px) 0 clamp(48px,8vw,76px);
+  header.hero{position:relative;overflow:hidden;color:#fff;padding:calc(clamp(40px,7vw,68px) + env(safe-area-inset-top,0px)) 0 clamp(48px,8vw,76px);
     background:
       radial-gradient(circle at 14% 22%, rgba(255,255,255,.07) 0 7px, transparent 8px) 0 0/42px 42px,
       radial-gradient(1200px 500px at 85% -10%, rgba(10,111,209,.35), transparent 60%),
@@ -77,7 +77,8 @@
   /* ---------- Controls ---------- */
   .controls{position:sticky;top:0;z-index:40;background:rgba(244,246,251,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line2);padding:12px 0}
   .ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .search{flex:1 1 220px;min-width:0;display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line2);border-radius:999px;padding:9px 15px;box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s}
+  .search{flex:0 1 33%;min-width:150px;max-width:33%;display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line2);border-radius:999px;padding:9px 15px;box-shadow:var(--shadow-sm);transition:border-color .15s,box-shadow .15s}
+  @media(max-width:760px){.search{flex:1 1 100%;max-width:none}}
   .search:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,111,209,.14)}
   .search input{border:0;outline:0;font:inherit;font-size:14.5px;width:100%;background:transparent;color:var(--ink)}
   .search svg{flex:none;color:var(--faint)}
@@ -91,10 +92,12 @@
   .chip:hover{border-color:#b9c2d0}
   .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
   .chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:middle}
-  .chips-toggle{display:none;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:11px;font-family:"Inter";font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line2);background:var(--paper);color:var(--ink);padding:10px 14px;border-radius:12px;box-shadow:var(--shadow-sm)}
-  .chips-caret{transition:transform .2s;font-size:12px;color:var(--muted)}
+  .chips-toggle{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;height:38px;padding:0 13px;font-family:"Inter";font-weight:600;font-size:13px;cursor:pointer;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);white-space:nowrap;transition:.15s}
+  .chips-toggle:hover{border-color:#b9c2d0;transform:translateY(-1px)}
+  .chips-toggle.open{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chips-caret{transition:transform .2s;font-size:11px;opacity:.7}
   .chips-toggle.open .chips-caret{transform:rotate(180deg)}
-  @media(max-width:760px){.chips-toggle{display:flex}.chips{margin-top:8px}.chips.collapsed{display:none}}
+  .chips.collapsed{display:none}
 
   main{padding:24px 0 70px}
   .count{font-size:13px;color:var(--muted);margin-bottom:14px;font-weight:500}
@@ -254,7 +257,7 @@
     --shadow-sm:none; --shadow:none; --shadow-lg:0 10px 34px -14px rgba(0,0,0,.28);
     --r:8px; --r-lg:10px;
   }
-  html[data-skin=minimal] header.hero{background:#fff;color:#111;padding:clamp(36px,5vw,60px) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--line)}
+  html[data-skin=minimal] header.hero{background:#fff;color:#111;padding:calc(clamp(36px,5vw,60px) + env(safe-area-inset-top,0px)) 0 clamp(28px,4vw,44px);border-bottom:1px solid var(--line)}
   html[data-skin=minimal] .hero::after{display:none}
   html[data-skin=minimal] .eyebrow{font-family:"Inter",sans-serif;color:#6b6b6b;letter-spacing:.14em;gap:0}
   html[data-skin=minimal] .eyebrow::before{display:none}
@@ -331,16 +334,14 @@
         <option value="series">Series</option>
       </select>
       <div class="seg" id="view" role="tablist">
-        <button data-v="table">▤ Table</button>
         <button data-v="grid" class="on">▦ Gallery</button>
         <button data-v="timeline">📅 Timeline</button>
-        <button data-v="shelf">🗄️ Shelf</button>
       </div>
+      <button class="chips-toggle" id="chipsToggle" type="button" aria-expanded="false"><span id="chipsToggleLabel">Filter: All</span><span class="chips-caret">▾</span></button>
       <button class="skin-toggle" id="skinToggle" type="button" title="Switch UI style">✨ Minimal</button>
       <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle dark mode">🌙</button>
     </div>
-    <button class="chips-toggle" id="chipsToggle" type="button" aria-expanded="false"><span id="chipsToggleLabel">Category: All categories</span><span class="chips-caret">▾</span></button>
-    <div class="chips" id="chips"></div>
+    <div class="chips collapsed" id="chips"></div>
   </div>
 </div>
 
@@ -486,7 +487,7 @@ function stats(){
 const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
 function chipsLabel(){
   const lbl=document.getElementById('chipsToggleLabel');if(!lbl)return;
-  lbl.textContent='Category: '+(cat==='all'?'All categories':(CAT[cat]?CAT[cat].label:cat));
+  lbl.textContent='⚙ Filter: '+(cat==='all'?'All':(CAT[cat]?CAT[cat].label:cat));
 }
 function collapseChips(){
   const box=document.getElementById('chips'),btn=document.getElementById('chipsToggle');
@@ -499,13 +500,13 @@ function chips(){
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
     b.innerHTML=(col?`<span class="dot" style="background:${col}"></span>`:"")+label;
-    b.onclick=()=>{cat=id;[...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();chipsLabel();if(isMobile())collapseChips();};
+    b.onclick=()=>{cat=id;[...el.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');render();chipsLabel();collapseChips();};
     el.appendChild(b);
   });
   const btn=document.getElementById('chipsToggle');
   if(btn&&!btn._wired){btn._wired=true;
     btn.onclick=()=>{const collapsed=el.classList.toggle('collapsed');btn.classList.toggle('open',!collapsed);btn.setAttribute('aria-expanded',String(!collapsed));};
-    if(isMobile())el.classList.add('collapsed');
+    el.classList.add('collapsed');
   }
   chipsLabel();
 }
@@ -534,7 +535,7 @@ function render(){
   if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
   if(query) txt+=` · “${query}”`;
   document.getElementById('count').innerHTML=txt;
-  document.getElementById('content').innerHTML=view==="table"?tableHTML(list):view==="timeline"?timelineHTML(list):gridHTML(list, view==="shelf");
+  document.getElementById('content').innerHTML=view==="timeline"?timelineHTML(list):gridHTML(list);
   document.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{lbList=list;lbIdx=+el.dataset.i;openLB();});
 }
 function tableHTML(list){
