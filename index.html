@@ -165,8 +165,8 @@
   .lb-close:hover{background:rgba(0,0,0,.65)}
 
   /* ---------- Footer ---------- */
-  footer{padding:30px 0 56px;color:var(--muted);font-size:12.5px;text-align:center}
-  .src{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-bottom:13px;font-size:12.5px;font-weight:500;box-shadow:var(--shadow-sm)}
+  footer{padding:56px 0 calc(72px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:12.5px;text-align:center}
+  .src{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 15px;margin-bottom:22px;font-size:12.5px;font-weight:500;box-shadow:var(--shadow-sm)}
   .src .live{width:8px;height:8px;border-radius:50%;background:#cbd3df}
   .src .live.on{background:var(--green);box-shadow:0 0 0 3px rgba(26,160,83,.18)}
   .disclaimer{max-width:78ch;margin:0 auto;font-size:12.5px;color:#717b88;line-height:1.65}
@@ -372,7 +372,6 @@
       <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle dark mode">🌙</button>
     </div>
     <div class="chips collapsed" id="chips"></div>
-    <button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
   </div>
 </div>
 
@@ -405,6 +404,8 @@
     <div class="load-text">Building your <b>LEGO</b> collection…</div>
   </div></div>
 </main>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
 
 <footer class="wrap">
   <div class="src"><span class="live" id="live"></span><span id="srcText">Connecting…</span></div>
@@ -677,6 +678,25 @@ document.getElementById('skinToggle').addEventListener('click',()=>{applySkin(do
   };
   addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
   if(top) top.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});bar.classList.remove('hide');});
+})();
+/* shake phone -> back to top (mobile) */
+(function(){
+  if(typeof DeviceMotionEvent==='undefined')return;
+  const goTop=()=>{const b=document.querySelector('.controls');window.scrollTo({top:0,behavior:'smooth'});if(b)b.classList.remove('hide');};
+  let last={x:0,y:0,z:0},lastT=0,fired=0,ready=false;
+  function onMotion(e){
+    const a=e.accelerationIncludingGravity;if(!a)return;
+    const now=Date.now();if(now-lastT<90)return;lastT=now;
+    const d=Math.abs((a.x||0)-last.x)+Math.abs((a.y||0)-last.y)+Math.abs((a.z||0)-last.z);
+    last={x:a.x||0,y:a.y||0,z:a.z||0};
+    if(!ready){ready=true;return;}
+    if(d>38&&now-fired>1500&&window.scrollY>300){fired=now;goTop();}
+  }
+  const enable=()=>window.addEventListener('devicemotion',onMotion);
+  if(typeof DeviceMotionEvent.requestPermission==='function'){
+    const ask=()=>{DeviceMotionEvent.requestPermission().then(s=>{if(s==='granted')enable();}).catch(()=>{});};
+    document.addEventListener('touchend',ask,{once:true});
+  } else enable();
 })();
 load();
 </script>
