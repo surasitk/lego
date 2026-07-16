@@ -312,8 +312,11 @@
   html[data-skin=minimal][data-theme=dark] .setno{color:#6f6f6f}
 
   /* ---------- Compact mobile controls + auto-hide on scroll ---------- */
-  .controls{padding-top:calc(12px + env(safe-area-inset-top,0px));transition:transform .28s ease}
-  .controls.hide{transform:translateY(-100%)}
+  /* stick just below the status bar (no extra gap on load) */
+  .controls{top:env(safe-area-inset-top,0px);transition:transform .28s ease}
+  .controls.hide{transform:translateY(calc(-100% - env(safe-area-inset-top,0px)))}
+  /* opaque filler behind the status bar area (PWA) */
+  body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:45;pointer-events:none}
   @media(max-width:760px){
     .ctrls{gap:7px}
     .lbl{display:none}
