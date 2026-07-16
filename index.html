@@ -297,6 +297,34 @@
   html[data-skin=minimal] .series-tag{background:#f4f4f5!important;color:#6b6b6b!important;font-weight:500;font-size:11.5px;padding:3px 8px;border-radius:5px}
   html[data-skin=minimal] .setno{color:#a5a5a5}
   html[data-skin=minimal] .cat .dot{opacity:.85}
+  /* ---------- Minimal polish ---------- */
+  html[data-skin=minimal] .eyebrow{font-size:10.5px;letter-spacing:.2em;color:#a3a3a3;margin-bottom:10px}
+  html[data-skin=minimal] h1{font-size:clamp(30px,4.6vw,46px);line-height:1.05;letter-spacing:-.038em;max-width:18ch}
+  /* stats: drop the boxes entirely */
+  html[data-skin=minimal] .stats{grid-template-columns:repeat(4,auto);justify-content:start;column-gap:clamp(30px,6vw,72px);row-gap:18px;gap:0 clamp(30px,6vw,72px);margin-top:34px;max-width:none}
+  html[data-skin=minimal] .stat{background:none;border:0;border-radius:0;padding:0;backdrop-filter:none}
+  html[data-skin=minimal] .stat b{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  html[data-skin=minimal] .stat small{font-size:10.5px;letter-spacing:.12em;color:#a3a3a3;font-weight:500}
+  html[data-skin=minimal] .stat-sub{color:#a3a3a3;font-weight:500;font-size:11px}
+  @media(max-width:760px){html[data-skin=minimal] .stats{grid-template-columns:repeat(2,auto);gap:16px 34px}}
+  /* cards: no inner divider, lighter thumb, calmer badges */
+  html[data-skin=minimal] .g-thumb{background:#fcfcfc;border-bottom:0}
+  html[data-skin=minimal] .g-thumb img{padding:22px}
+  html[data-skin=minimal] .g-card:hover{transform:none;border-color:#111}
+  html[data-skin=minimal] .g-name{font-size:13.5px;letter-spacing:-.012em}
+  html[data-skin=minimal] .grid{gap:18px}
+  html[data-skin=minimal] .g-thumb .yr{background:rgba(255,255,255,.92);color:#6b6b6b;border:1px solid #ededed;font-weight:600;font-size:11px;padding:2px 7px}
+  html[data-skin=minimal] .badge-vin{background:rgba(255,255,255,.92);color:#a3a3a3;border:1px solid #ededed;font-weight:500}
+  html[data-skin=minimal] .badge-dupe{background:rgba(255,255,255,.92);color:#6b6b6b;border:1px solid #ededed;font-weight:600}
+  /* quieter chrome */
+  html[data-skin=minimal] .controls{border-bottom-color:#efefef}
+  html[data-skin=minimal] .count{color:#a3a3a3}
+  html[data-skin=minimal] .grid-sep::before,html[data-skin=minimal] .grid-sep::after{background:#ededed;height:1px}
+  html[data-skin=minimal] .grid-sep span{font-weight:600;font-size:11px;letter-spacing:.12em;color:#b5b5b5}
+  html[data-skin=minimal] .src{border-color:#ededed;color:#8a8a8a;font-weight:500;box-shadow:none}
+  html[data-skin=minimal] .disclaimer{color:#a8a8a8}
+  html[data-skin=minimal] .tl-card:hover{transform:none}
+
   /* Minimal + dark */
   html[data-skin=minimal][data-theme=dark]{--bg:#0d0d0d;--bg2:#141414;--paper:#161616;--ink:#f0f0f0;--muted:#9a9a9a;--faint:#6f6f6f;--line:#262626;--line2:#303030}
   html[data-skin=minimal][data-theme=dark] header.hero{background:#0d0d0d;color:#f0f0f0;border-bottom-color:#262626}
@@ -305,7 +333,16 @@
   html[data-skin=minimal][data-theme=dark] .g-thumb,html[data-skin=minimal][data-theme=dark] .tl-thumb{background:#1c1c1c}
   html[data-skin=minimal][data-theme=dark] .controls{background:rgba(13,13,13,.9)}
   html[data-skin=minimal][data-theme=dark] .chip.on,html[data-skin=minimal][data-theme=dark] .seg button.on{background:#f0f0f0;color:#111}
-  html[data-skin=minimal][data-theme=dark] .g-thumb .yr,html[data-skin=minimal][data-theme=dark] .badge-grail{background:#f0f0f0;color:#111}
+  html[data-skin=minimal][data-theme=dark] .badge-grail{background:#f0f0f0;color:#111}
+  html[data-skin=minimal][data-theme=dark] .g-thumb .yr,
+  html[data-skin=minimal][data-theme=dark] .badge-vin,
+  html[data-skin=minimal][data-theme=dark] .badge-dupe{background:rgba(22,22,22,.92);border-color:#2c2c2c;color:#8f8f8f}
+  html[data-skin=minimal][data-theme=dark] .eyebrow,
+  html[data-skin=minimal][data-theme=dark] .stat small,
+  html[data-skin=minimal][data-theme=dark] .stat-sub,
+  html[data-skin=minimal][data-theme=dark] .count{color:#7e7e7e}
+  html[data-skin=minimal][data-theme=dark] .g-thumb{background:#131313}
+  html[data-skin=minimal][data-theme=dark] .grid-sep::before,html[data-skin=minimal][data-theme=dark] .grid-sep::after{background:#262626}
   html[data-skin=minimal][data-theme=dark] .g-card:hover{border-color:#f0f0f0}
   html[data-skin=minimal][data-theme=dark] .tl-dot{background:#f0f0f0;border-color:#0d0d0d}
   html[data-skin=minimal][data-theme=dark] .series-tag{background:#232323!important;color:#9a9a9a!important}
