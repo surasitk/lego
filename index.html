@@ -310,6 +310,30 @@
   html[data-skin=minimal][data-theme=dark] .tl-dot{background:#f0f0f0;border-color:#0d0d0d}
   html[data-skin=minimal][data-theme=dark] .series-tag{background:#232323!important;color:#9a9a9a!important}
   html[data-skin=minimal][data-theme=dark] .setno{color:#6f6f6f}
+
+  /* ---------- Compact mobile controls + auto-hide on scroll ---------- */
+  .controls{padding-top:calc(12px + env(safe-area-inset-top,0px));transition:transform .28s ease}
+  .controls.hide{transform:translateY(-100%)}
+  @media(max-width:760px){
+    .ctrls{gap:7px}
+    .lbl{display:none}
+    .search{flex:1 1 auto;max-width:none;padding:8px 12px}
+    .search input{font-size:14px}
+    select.sort{flex:0 0 auto;max-width:118px;font-size:12px;padding:8px 8px;text-overflow:ellipsis}
+    .seg{padding:2px}
+    .seg button{padding:7px 9px;font-size:13px}
+    .chips-toggle{height:34px;padding:0 10px;font-size:12.5px}
+    .skin-toggle{height:34px;padding:0 10px;font-size:12.5px}
+    .theme-toggle{width:34px;height:34px;font-size:15px}
+  }
+  /* back to top (mobile, minimal) */
+  .to-top{display:none;position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:38px;height:38px;border-radius:999px;
+    border:1px solid var(--line2);background:var(--paper);color:var(--muted);font-size:15px;line-height:1;cursor:pointer;
+    align-items:center;justify-content:center;z-index:50;opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .2s ease,transform .2s ease;box-shadow:var(--shadow-sm)}
+  .to-top.show{opacity:.9;pointer-events:auto;transform:none}
+  .to-top:active{opacity:1;transform:scale(.94)}
+  @media(max-width:760px){.to-top{display:inline-flex}}
 </style>
 </head>
 <body>
@@ -340,14 +364,15 @@
         <option value="series">Series</option>
       </select>
       <div class="seg" id="view" role="tablist">
-        <button data-v="grid" class="on">▦ Gallery</button>
-        <button data-v="timeline">📅 Timeline</button>
+        <button data-v="grid" class="on">▦ <span class="lbl">Gallery</span></button>
+        <button data-v="timeline">📅 <span class="lbl">Timeline</span></button>
       </div>
       <button class="chips-toggle" id="chipsToggle" type="button" aria-expanded="false"><span id="chipsToggleLabel">Filter: All</span><span class="chips-caret">▾</span></button>
       <button class="skin-toggle" id="skinToggle" type="button" title="Switch UI style">✨ Minimal</button>
       <button class="theme-toggle" id="themeToggle" type="button" title="Toggle theme" aria-label="Toggle dark mode">🌙</button>
     </div>
     <div class="chips collapsed" id="chips"></div>
+    <button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
   </div>
 </div>
 
@@ -493,7 +518,7 @@ function stats(){
 const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
 function chipsLabel(){
   const lbl=document.getElementById('chipsToggleLabel');if(!lbl)return;
-  lbl.textContent='⚙ Filter: '+(cat==='all'?'All':(CAT[cat]?CAT[cat].label:cat));
+  lbl.innerHTML='⚙ <span class="lbl">Filter: </span>'+(cat==='all'?'All':(CAT[cat]?CAT[cat].label:cat));
 }
 function collapseChips(){
   const box=document.getElementById('chips'),btn=document.getElementById('chipsToggle');
@@ -633,9 +658,26 @@ document.getElementById('view').addEventListener('click',e=>{const b=e.target.cl
 function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('themeToggle');if(b)b.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('lego-theme',t);}catch(e){}}
 (function(){let t='light';try{t=localStorage.getItem('lego-theme')||'light';}catch(e){}applyTheme(t);})();
 document.getElementById('themeToggle').addEventListener('click',()=>{applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');});
-function applySkin(s){document.documentElement.setAttribute('data-skin',s);const b=document.getElementById('skinToggle');if(b)b.textContent=s==='minimal'?'🧱 Classic':'✨ Minimal';try{localStorage.setItem('lego-skin',s);}catch(e){}}
+function applySkin(s){document.documentElement.setAttribute('data-skin',s);const b=document.getElementById('skinToggle');if(b)b.innerHTML=s==='minimal'?'🧱 <span class="lbl">Classic</span>':'✨ <span class="lbl">Minimal</span>';try{localStorage.setItem('lego-skin',s);}catch(e){}}
 (function(){let s='classic';try{s=localStorage.getItem('lego-skin')||'classic';}catch(e){}applySkin(s);})();
 document.getElementById('skinToggle').addEventListener('click',()=>{applySkin(document.documentElement.getAttribute('data-skin')==='minimal'?'classic':'minimal');});
+(function(){
+  const bar=document.querySelector('.controls'), top=document.getElementById('toTop');
+  if(!bar)return;
+  let last=0,tick=false;
+  const upd=()=>{
+    tick=false;
+    const y=Math.max(0,window.scrollY);
+    if(top) top.classList.toggle('show', y>400);
+    if(!isMobile()){bar.classList.remove('hide');last=y;return;}
+    if(Math.abs(y-last)<6) return;
+    if(y>last&&y>200){bar.classList.add('hide');collapseChips();}
+    else bar.classList.remove('hide');
+    last=y;
+  };
+  addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
+  if(top) top.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});bar.classList.remove('hide');});
+})();
 load();
 </script>
 </body>
