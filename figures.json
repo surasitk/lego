@@ -1950,5 +1950,23 @@
     "type": "minifigure",
     "history": "CMF Series 14 'Monsters' (71010, 2015) — the all-Halloween wave.",
     "inspiration": "A fierce woman in a striped tiger costume, whip in paw."
+  },
+  {
+    "name_th": "คิงมาไทอัส",
+    "name_en": "King Mathias",
+    "series": "Castle (Knights Kingdom II)",
+    "set_no": "8781",
+    "release_date": "2004",
+    "release_sort": 20040101,
+    "category": "castle",
+    "bricklink_id": "cas258a",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas258a.png",
+    "confidence": "sure",
+    "emoji": "⚔️",
+    "identified": true,
+    "note": "มีพู่น้ำเงินเสริมบนมงกุฎ",
+    "type": "minifigure",
+    "history": "Knights' Kingdom II (2004–2005) — King Mathias, blue-arm variant cas258a, from sets including 8781 Castle of Morcia. Chrome-silver crown and gold lion breastplate.",
+    "inspiration": "King Mathias, the wise ruler of Morcia and mentor of the four hero knights in Knights' Kingdom II."
   }
 ]
