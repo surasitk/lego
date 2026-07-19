@@ -578,8 +578,8 @@ function collapseChips(){
 }
 function chips(){
   const sc=smallCats();
-  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>!sc.has(k)).map(([k,v])=>[k,v.label,v.color])];
-  if(sc.size) defs.splice(defs.length-2,0,["others","Others","#9aa4b2"]);
+  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>!sc.has(k)&&k!=='set'&&k!=='book').map(([k,v])=>[k,v.label,v.color])];
+  defs.push(["others","Others","#9aa4b2"]);
   const el=document.getElementById('chips');el.innerHTML='';
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
@@ -606,7 +606,7 @@ function filtered(){
   if(cat==='book') return books;
   if(cat==='set') return sets;
   if(cat==='all') return figs.concat(sets).concat(books);
-  if(cat==='others'){const sc=smallCats();return figs.filter(f=>sc.has(f.category));}
+  if(cat==='others'){const sc=smallCats();return figs.filter(f=>sc.has(f.category)).concat(sets).concat(books);}
   return figs.filter(f=>f.category===cat);
 }
 function render(){
