@@ -1968,5 +1968,23 @@
     "type": "minifigure",
     "history": "Knights' Kingdom II (2004–2005) — King Mathias, blue-arm variant cas258a, from sets including 8781 Castle of Morcia. Chrome-silver crown and gold lion breastplate.",
     "inspiration": "King Mathias, the wise ruler of Morcia and mentor of the four hero knights in Knights' Kingdom II."
+  },
+  {
+    "name_th": "ราชินีผมดำ",
+    "name_en": "Queen with Black Hair",
+    "series": "Castle (Kingdoms)",
+    "set_no": "7952",
+    "release_date": "2010",
+    "release_sort": 20101201,
+    "category": "castle",
+    "bricklink_id": "cas469",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas469.png",
+    "confidence": "sure",
+    "emoji": "👸",
+    "identified": true,
+    "note": null,
+    "type": "minifigure",
+    "history": "Kingdoms Advent Calendar 7952 (2010) — the Queen with black up-do hair and gold tiara, exclusive to the 2010 advent calendar.",
+    "inspiration": "The Queen of the Lion Kingdom in her red and gold court gown."
   }
 ]
