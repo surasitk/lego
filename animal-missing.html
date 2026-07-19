@@ -405,12 +405,6 @@
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input id="q" type="search" placeholder="Search name, series, or set number…" autocomplete="off" aria-label="Search">
       </label>
-      <select class="sort" id="sort" aria-label="Sort">
-        <option value="year-asc">Year ↑ (old → new)</option>
-        <option value="year-desc">Year ↓ (new → old)</option>
-        <option value="name">Name (A–Z)</option>
-        <option value="series">Series</option>
-      </select>
       <div class="seg" id="view" role="tablist">
         <button data-v="grid" class="on">▦ <span class="lbl">Gallery</span></button>
         <button data-v="timeline">📅 <span class="lbl">Timeline</span></button>
@@ -498,7 +492,7 @@ const CAT = {
   book:   {label:"Book",                color:"#475569"},
 };
 
-let ALL=[], view="grid", cat="all", sortBy="year-asc", query="", lbList=[], lbIdx=0;
+let ALL=[], view="grid", cat="all", query="", lbList=[], lbIdx=0;
 
 const blUrl = f => f.bricklink_id
   ? `https://www.bricklink.com/v2/catalog/catalogitem.page?${f.category==='book'?'B':f.category==='set'?'S':'M'}=${encodeURIComponent(f.bricklink_id)}`
@@ -528,9 +522,15 @@ async function load(){
   stats(); chips(); render();
 }
 function stats(){
-  const minis=ALL.filter(f=>f.category!=='book'&&f.category!=='set');
-  const sets=ALL.filter(f=>f.category==='set');
-  const books=ALL.filter(f=>f.category==='book');
+  // Stats follow the selected category chip (All = everything)
+  const sc=smallCats();
+  let scope;
+  if(cat==='all') scope=ALL;
+  else if(cat==='others') scope=ALL.filter(f=>sc.has(f.category)||f.category==='set'||f.category==='book');
+  else scope=ALL.filter(f=>f.category===cat);
+  const minis=scope.filter(f=>f.category!=='book'&&f.category!=='set');
+  const sets=scope.filter(f=>f.category==='set');
+  const books=scope.filter(f=>f.category==='book');
   document.getElementById('sFigs').textContent=minis.length;
   const sb=document.getElementById('sBooks');
   if(sb){ const t=[]; if(sets.length)t.push('🧱 '+sets.length+' Set'+(sets.length!==1?'s':'')); if(books.length)t.push('📚 '+books.length+' Book'+(books.length!==1?'s':'')); sb.textContent=t.join('  ·  '); }
@@ -540,9 +540,14 @@ function stats(){
   document.getElementById('sCats').textContent=new Set(minis.map(f=>f.category)).size;
 }
 const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
+const OTHERS_MIN=3; // categories with fewer figures than this fold into the "Others" chip (data keeps its real category)
+function smallCats(){
+  const c={};ALL.forEach(f=>{const k=f.category;if(k&&k!=='set'&&k!=='book')c[k]=(c[k]||0)+1});
+  return new Set(Object.keys(c).filter(k=>c[k]<OTHERS_MIN));
+}
 function chipsLabel(){
   const lbl=document.getElementById('chipsToggleLabel');if(!lbl)return;
-  lbl.innerHTML='⚙ <span class="lbl">Filter: </span>'+(cat==='all'?'All':(CAT[cat]?CAT[cat].label:cat));
+  lbl.innerHTML='⚙ <span class="lbl">Filter: </span>'+(cat==='all'?'All':cat==='others'?'Others':(CAT[cat]?CAT[cat].label:cat));
 }
 function collapseChips(){
   const box=document.getElementById('chips'),btn=document.getElementById('chipsToggle');
@@ -550,7 +555,10 @@ function collapseChips(){
   if(btn){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}
 }
 function chips(){
-  const defs=[["all","All",null],...Object.entries(CAT).map(([k,v])=>[k,v.label,v.color])];
+  const sc=smallCats();
+  const counts={};ALL.forEach(f=>{const k=f.category;if(k)counts[k]=(counts[k]||0)+1});
+  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>(counts[k]||0)>=OTHERS_MIN&&!sc.has(k)&&k!=='set'&&k!=='book').map(([k,v])=>[k,v.label,v.color])];
+  if(sc.size||ALL.some(f=>f.category==='set'||f.category==='book')) defs.push(["others","Others","#9aa4b2"]);
   const el=document.getElementById('chips');el.innerHTML='';
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
@@ -565,21 +573,35 @@ function chips(){
   }
   chipsLabel();
 }
+const CATORDER=['animal','food','castle','pop','pirate','other'];
+const catLabel=k=>CAT[k]?CAT[k].label:(k||'');
+const byOld=(a,b)=>a.release_sort-b.release_sort;
+const byName=(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th);
 function filtered(){
-  const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
-    'name':(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th),
-    'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort};
   const q=query?query.toLowerCase():null;
   const match=f=>!q||[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(x=>x.toLowerCase().includes(q));
-  const figs=ALL.filter(f=>f.category!=='book'&&f.category!=='set'&&match(f)).sort(s[sortBy]);
-  const sets=ALL.filter(f=>f.category==='set'&&match(f)).sort(s[sortBy]);
-  const books=ALL.filter(f=>f.category==='book'&&match(f)).sort(s[sortBy]);
-  if(cat==='book') return books;
-  if(cat==='set') return sets;
-  if(cat==='all') return figs.concat(sets).concat(books);
-  return figs.filter(f=>f.category===cat);
+  const figs=ALL.filter(f=>f.category!=='book'&&f.category!=='set'&&match(f));
+  const sets=ALL.filter(f=>f.category==='set'&&match(f)).sort(byOld);
+  const books=ALL.filter(f=>f.category==='book'&&match(f)).sort(byOld);
+  const sc=smallCats();
+  const inOthers=f=>sc.has(f.category);
+  let list;
+  if(cat==='book') list=books;
+  else if(cat==='set') list=sets;
+  else if(cat==='others') list=figs.filter(inOthers).sort((a,b)=>catLabel(a.category).localeCompare(catLabel(b.category))||byOld(a,b)).concat(sets).concat(books);
+  else if(cat==='all'){
+    const main=CATORDER.filter(k=>!sc.has(k));
+    const out=[];
+    main.forEach(k=>out.push(...figs.filter(f=>f.category===k).sort(byOld)));
+    const rest=figs.filter(f=>!main.includes(f.category)).sort((a,b)=>catLabel(a.category).localeCompare(catLabel(b.category))||byOld(a,b));
+    list=out.concat(rest).concat(sets).concat(books);
+  }
+  else list=figs.filter(f=>f.category===cat).sort(byOld);
+  if(view==='timeline') list=[...list].sort((a,b)=>byOld(a,b)||byName(a,b));
+  return list;
 }
 function render(){
+  stats();
   const list=filtered();
   const bk=list.filter(f=>f.category==='book').length, st=list.filter(f=>f.category==='set').length, nb=list.length-bk-st;
   const parts=[];
@@ -587,7 +609,7 @@ function render(){
   if(st) parts.push(`<b>${st}</b> set${st!==1?'s':''}`);
   if(bk) parts.push(`<b>${bk}</b> book${bk!==1?'s':''}`);
   let txt='Showing '+(parts.join(' · ')||'<b>0</b> items');
-  if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
+  if(cat==='others') txt+=` in <b>Others</b>`; else if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
   if(query) txt+=` · “${query}”`;
   document.getElementById('count').innerHTML=txt;
   document.getElementById('content').innerHTML=view==="timeline"?timelineHTML(list):gridHTML(list);
@@ -677,7 +699,6 @@ document.addEventListener('keydown',e=>{
   else if(open&&e.key==='ArrowRight')lbStep(1);
 });
 document.getElementById('q').addEventListener('input',e=>{query=e.target.value.trim();render();});
-document.getElementById('sort').addEventListener('change',e=>{sortBy=e.target.value;render();});
 document.getElementById('view').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;view=b.dataset.v;[...document.querySelectorAll('#view button')].forEach(x=>x.classList.toggle('on',x===b));render();});
 function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('themeToggle');if(b)b.textContent=t==='dark'?'☀️':'🌙';try{localStorage.setItem('lego-theme',t);}catch(e){}}
 (function(){let t='light';try{t=localStorage.getItem('lego-theme')||'light';}catch(e){}applyTheme(t);})();

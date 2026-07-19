@@ -578,8 +578,9 @@ function collapseChips(){
 }
 function chips(){
   const sc=smallCats();
-  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>!sc.has(k)&&k!=='set'&&k!=='book').map(([k,v])=>[k,v.label,v.color])];
-  defs.push(["others","Others","#9aa4b2"]);
+  const counts={};ALL.forEach(f=>{const k=f.category;if(k)counts[k]=(counts[k]||0)+1});
+  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>(counts[k]||0)>=OTHERS_MIN&&!sc.has(k)&&k!=='set'&&k!=='book').map(([k,v])=>[k,v.label,v.color])];
+  if(sc.size||ALL.some(f=>f.category==='set'||f.category==='book')) defs.push(["others","Others","#9aa4b2"]);
   const el=document.getElementById('chips');el.innerHTML='';
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
