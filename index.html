@@ -562,9 +562,14 @@ function stats(){
   document.getElementById('sCats').textContent=new Set(minis.map(f=>f.category)).size;
 }
 const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
+const OTHERS_MIN=3; // categories with fewer figures than this fold into the "Others" chip (data keeps its real category)
+function smallCats(){
+  const c={};ALL.forEach(f=>{const k=f.category;if(k&&k!=='set'&&k!=='book')c[k]=(c[k]||0)+1});
+  return new Set(Object.keys(c).filter(k=>c[k]<OTHERS_MIN));
+}
 function chipsLabel(){
   const lbl=document.getElementById('chipsToggleLabel');if(!lbl)return;
-  lbl.innerHTML='⚙ <span class="lbl">Filter: </span>'+(cat==='all'?'All':(CAT[cat]?CAT[cat].label:cat));
+  lbl.innerHTML='⚙ <span class="lbl">Filter: </span>'+(cat==='all'?'All':cat==='others'?'Others':(CAT[cat]?CAT[cat].label:cat));
 }
 function collapseChips(){
   const box=document.getElementById('chips'),btn=document.getElementById('chipsToggle');
@@ -572,7 +577,9 @@ function collapseChips(){
   if(btn){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}
 }
 function chips(){
-  const defs=[["all","All",null],...Object.entries(CAT).map(([k,v])=>[k,v.label,v.color])];
+  const sc=smallCats();
+  const defs=[["all","All",null],...Object.entries(CAT).filter(([k])=>!sc.has(k)).map(([k,v])=>[k,v.label,v.color])];
+  if(sc.size) defs.splice(defs.length-2,0,["others","Others","#9aa4b2"]);
   const el=document.getElementById('chips');el.innerHTML='';
   defs.forEach(([id,label,col])=>{
     const b=document.createElement('button');b.className="chip"+(id===cat?" on":"");
@@ -599,6 +606,7 @@ function filtered(){
   if(cat==='book') return books;
   if(cat==='set') return sets;
   if(cat==='all') return figs.concat(sets).concat(books);
+  if(cat==='others'){const sc=smallCats();return figs.filter(f=>sc.has(f.category));}
   return figs.filter(f=>f.category===cat);
 }
 function render(){
@@ -609,7 +617,7 @@ function render(){
   if(st) parts.push(`<b>${st}</b> set${st!==1?'s':''}`);
   if(bk) parts.push(`<b>${bk}</b> book${bk!==1?'s':''}`);
   let txt='Showing '+(parts.join(' · ')||'<b>0</b> items');
-  if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
+  if(cat==='others') txt+=` in <b>Others</b>`; else if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
   if(query) txt+=` · “${query}”`;
   document.getElementById('count').innerHTML=txt;
   document.getElementById('content').innerHTML=view==="timeline"?timelineHTML(list):gridHTML(list);
