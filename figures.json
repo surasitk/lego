@@ -881,6 +881,24 @@
     "inspiration": "A super-fan wearing a full chicken mascot suit."
   },
   {
+    "name_th": "นางเงือก",
+    "name_en": "Mermaid",
+    "series": "Series 9",
+    "set_no": "71000",
+    "release_date": "2013",
+    "release_sort": 20130102,
+    "category": "myth",
+    "bricklink_id": "col140",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col140.png",
+    "confidence": "sure",
+    "emoji": "🧜‍♀️",
+    "identified": true,
+    "note": null,
+    "history": "Mermaid from Collectible Minifigures Series 9 (71000, 2013). Blonde hair, shell top, blue scaled tail and an orange starfish.",
+    "inspiration": null,
+    "type": "minifigure"
+  },
+  {
     "name_th": "ทหารม้า (Lone Ranger)",
     "name_en": "Cavalry Soldier",
     "series": "The Lone Ranger",
@@ -1279,6 +1297,24 @@
     "note": null,
     "history": "CMF Series 18 (71021, 2018).",
     "inspiration": "A prickly cactus costume."
+  },
+  {
+    "name_th": "เด็กชุดแมงมุม",
+    "name_en": "Spider Suit Boy",
+    "series": "Series 18",
+    "set_no": "71021",
+    "release_date": "2018",
+    "release_sort": 20180404,
+    "category": "animal",
+    "bricklink_id": "col320",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col320.png",
+    "confidence": "sure",
+    "emoji": "🕷️",
+    "identified": true,
+    "note": null,
+    "history": "Spider Suit Boy from Collectible Minifigures Series 18 — Party (71021, 2018). A black spider costume with eight legs and a pet spider.",
+    "inspiration": null,
+    "type": "minifigure"
   },
   {
     "name_th": "หนุ่มเค้กวันเกิด",
