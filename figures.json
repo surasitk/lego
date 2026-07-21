@@ -2274,5 +2274,41 @@
     "history": "Peacock Costume Fan from Collectible Minifigures Series 28 — Animals (71051, 2026). Second copy owned by the collector.",
     "inspiration": null,
     "type": "minifigure"
+  },
+  {
+    "name_th": "หุ่นยนต์ที-เร็กซ์",
+    "name_en": "Robot T. rex",
+    "series": "Series 29",
+    "set_no": "71052",
+    "release_date": "2026",
+    "release_sort": 20260501,
+    "category": "animal",
+    "bricklink_id": "col473",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col473.png",
+    "confidence": "sure",
+    "emoji": "🦖",
+    "identified": true,
+    "note": null,
+    "history": "Robot T. rex from Collectible Minifigures Series 29 (71052, 2026) — a white mecha dinosaur suit with glowing pink eye and battery pack.",
+    "inspiration": null,
+    "type": "minifigure"
+  },
+  {
+    "name_th": "สาวชานมไข่มุก",
+    "name_en": "Boba Cup Fan",
+    "series": "Series 29",
+    "set_no": "71052",
+    "release_date": "2026",
+    "release_sort": 20260502,
+    "category": "food",
+    "bricklink_id": "col477",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/col477.png",
+    "confidence": "sure",
+    "emoji": "🧋",
+    "identified": true,
+    "note": null,
+    "history": "Boba Cup Fan from Collectible Minifigures Series 29 (71052, 2026) — dual-moulded trans-pink bubble tea cup costume with pearlescent lid, straw and tapioca pearls.",
+    "inspiration": null,
+    "type": "minifigure"
   }
 ]

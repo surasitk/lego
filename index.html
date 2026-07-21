@@ -398,6 +398,7 @@
         <input id="q" type="search" placeholder="Search name, series, or set number…" autocomplete="off" aria-label="Search">
       </label>
       <select class="sort" id="sort" aria-label="Sort">
+        <option value="category" selected>Category</option>
         <option value="year-asc">Year ↑ (old → new)</option>
         <option value="year-desc">Year ↓ (new → old)</option>
         <option value="name">Name (A–Z)</option>
@@ -493,7 +494,7 @@ const CAT = {
   book:   {label:"Book",                color:"#475569"},
 };
 
-let ALL=[], view="grid", cat="all", sortBy="year-asc", query="", lbList=[], lbIdx=0;
+let ALL=[], view="grid", cat="all", sortBy="category", query="", lbList=[], lbIdx=0;
 
 const blUrl = f => f.bricklink_id
   ? `https://www.bricklink.com/v2/catalog/catalogitem.page?${f.category==='book'?'B':f.category==='set'?'S':'M'}=${encodeURIComponent(f.bricklink_id)}`
@@ -583,9 +584,12 @@ function chips(){
   chipsLabel();
 }
 function filtered(){
+  const CATORDER={animal:1,bird:1,aquatic:1,mammal:1,food:2,plant:2,castle:3,myth:3,pirate:4,western:4,pop:5};
+  const catRank=f=>CATORDER[f.category]||6;
   const s={'year-asc':(a,b)=>a.release_sort-b.release_sort,'year-desc':(a,b)=>b.release_sort-a.release_sort,
     'name':(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th),
-    'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort};
+    'series':(a,b)=>(a.series||'').localeCompare(b.series||'')||a.release_sort-b.release_sort,
+    'category':(a,b)=>catRank(a)-catRank(b)||(a.category||'').localeCompare(b.category||'')||a.release_sort-b.release_sort};
   const q=query?query.toLowerCase():null;
   const match=f=>!q||[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(x=>x.toLowerCase().includes(q));
   const figs=ALL.filter(f=>f.category!=='book'&&f.category!=='set'&&match(f)).sort(s[sortBy]);
