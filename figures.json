@@ -2022,5 +2022,41 @@
     "type": "minifigure",
     "history": "Star Wars (2017) - Darth Maul with molded horn crown, printed legs and open-mouth snarl. Appears in 75169 Duel on Naboo and 75224 Sith Infiltrator Microfighter.",
     "inspiration": "The double-bladed Sith apprentice from The Phantom Menace."
+  },
+  {
+    "name_th": "สติทช์",
+    "name_en": "Stitch",
+    "series": "Disney Series 1",
+    "set_no": "71012",
+    "release_date": "May 2016",
+    "release_sort": 20160501,
+    "category": "pop",
+    "bricklink_id": "dis001",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/dis001.png",
+    "confidence": "sure",
+    "emoji": "👽",
+    "identified": true,
+    "note": null,
+    "type": "minifigure",
+    "history": "LEGO Disney CMF Series 1 (71012, 2016) - Stitch with molded head and big pink ears.",
+    "inspiration": "Experiment 626 himself - the chaotic blue alien from Disney's Lilo & Stitch."
+  },
+  {
+    "name_th": "สติทช์ 626 (ชุดอวกาศ)",
+    "name_en": "Stitch 626",
+    "series": "Disney 100",
+    "set_no": "71038",
+    "release_date": "2023",
+    "release_sort": 20230104,
+    "category": "pop",
+    "bricklink_id": "dis107",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/dis107.png",
+    "confidence": "sure",
+    "emoji": "🚀",
+    "identified": true,
+    "note": null,
+    "type": "minifigure",
+    "history": "LEGO Disney 100 CMF (71038, 2023) - Stitch in his red Galactic Federation spacesuit as Experiment 626.",
+    "inspiration": "Stitch as Experiment 626 in the red space captain suit from the opening of Lilo & Stitch."
   }
 ]
