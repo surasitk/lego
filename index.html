@@ -484,6 +484,8 @@ const CAT = {
   castle: {label:"Castle",              color:"#a6791e"},
   egypt:  {label:"Egypt",               color:"#c9a227"},
   pop:    {label:"Pop Culture",         color:"#e11d2a"},
+  hero:   {label:"Super Hero",          color:"#dc2660"},
+  robot:  {label:"Robot",               color:"#64748b"},
   pirate: {label:"Pirates",             color:"#0d9488"},
   western:{label:"Western",             color:"#b45309"},
   space:  {label:"Space",               color:"#4f46e5"},
@@ -595,7 +597,7 @@ function chips(){
   }
   chipsLabel();
 }
-const CATORDER=['animal','food','castle','pop','pirate','other'];
+const CATORDER=['animal','food','castle','hero','robot','pop','pirate','other'];
 const catLabel=k=>CAT[k]?CAT[k].label:(k||'');
 const byOld=(a,b)=>a.release_sort-b.release_sort;
 const byName=(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th);
