@@ -2454,5 +2454,23 @@
   "history": "The LEGO Batman Movie CMF Series 1 (71017, 2017) - Orca, the killer-whale villainess from Gotham.",
   "inspiration": "DC villain Orca - Dr. Grace Balin, the whale-suited foe from Batman comics.",
   "type": "minifigure"
+ },
+ {
+  "name_th": "นักสเก็ตชุดไก่",
+  "name_en": "Chicken Skater",
+  "series": "Seasonal (Easter)",
+  "set_no": "853958",
+  "release_date": "Apr 2019",
+  "release_sort": 20190401,
+  "category": "animal",
+  "bricklink_id": "hol144",
+  "image_url": "https://img.bricklink.com/ItemImage/MN/0/hol144.png",
+  "confidence": "sure",
+  "emoji": "🐤",
+  "identified": true,
+  "note": null,
+  "history": "Exclusive to the Easter Chicken Skater Pod 853958 (2019) - a chicken-suit skater on red roller skates, with trophy and bunny friend.",
+  "inspiration": "An Easter chick zooming down the skate ramp - seasonal cousin of the Series 9 Chicken Suit Guy.",
+  "type": "minifigure"
  }
 ]
