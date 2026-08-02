@@ -636,8 +636,9 @@ function render(){
   if(cat==='others') txt+=` in <b>Others</b>`; else if(cat!=='all'&&cat!=='book'&&cat!=='set'&&CAT[cat]) txt+=` in <b>${CAT[cat].label}</b>`;
   if(query) txt+=` · “${query}”`;
   document.getElementById('count').innerHTML=txt;
-  document.getElementById('content').innerHTML=view==="timeline"?timelineHTML(list):gridHTML(list);
-  document.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{lbList=list;lbIdx=+el.dataset.i;openLB();});
+  const seen=new Set(), dlist=list.filter(f=>{const k=(f.name_en||f.name_th)+'|'+(f.bricklink_id||'');if(seen.has(k))return false;seen.add(k);return true;});
+  document.getElementById('content').innerHTML=view==="timeline"?timelineHTML(dlist):gridHTML(dlist);
+  document.querySelectorAll('[data-i]').forEach(el=>el.onclick=()=>{lbList=dlist;lbIdx=+el.dataset.i;openLB();});
 }
 function tableHTML(list){
   if(!list.length) return '<div class="loading">No items match your filters.</div>';
