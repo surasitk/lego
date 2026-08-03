@@ -597,7 +597,7 @@ function chips(){
   }
   chipsLabel();
 }
-const CATORDER=['animal','food','castle','hero','robot','pop','pirate','other'];
+const CATORDER=['animal','hero','robot','food','plant','castle','pop','pirate','other'];
 const catLabel=k=>CAT[k]?CAT[k].label:(k||'');
 const byOld=(a,b)=>a.release_sort-b.release_sort;
 const byName=(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th);

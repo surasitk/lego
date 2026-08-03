@@ -2472,5 +2472,41 @@
   "history": "Exclusive to the Easter Chicken Skater Pod 853958 (2019) - a chicken-suit skater on red roller skates, with trophy and bunny friend.",
   "inspiration": "An Easter chick zooming down the skate ramp - seasonal cousin of the Series 9 Chicken Suit Guy.",
   "type": "minifigure"
+ },
+ {
+  "name_th": "หุ่นยนต์ไขลาน",
+  "name_en": "Clockwork Robot",
+  "series": "Series 6",
+  "set_no": "8827",
+  "release_date": "2012",
+  "release_sort": 20120101,
+  "category": "robot",
+  "bricklink_id": "col087",
+  "image_url": "https://img.bricklink.com/ItemImage/MN/0/col087.png",
+  "confidence": "sure",
+  "emoji": "🔑",
+  "identified": true,
+  "note": null,
+  "type": "minifigure",
+  "history": "CMF Series 6 (8827, 2012) - Clockwork Robot, a retro tin wind-up robot with a turn-key on its back.",
+  "inspiration": "A vintage wind-up tin toy robot marching stiffly forward."
+ },
+ {
+  "name_th": "ราชินีน้ำแข็ง",
+  "name_en": "Ice Queen",
+  "series": "Series 16",
+  "set_no": "71013",
+  "release_date": "Sep 2016",
+  "release_sort": 20160901,
+  "category": "castle",
+  "bricklink_id": "col244",
+  "image_url": "https://img.bricklink.com/ItemImage/MN/0/col244.png",
+  "confidence": "sure",
+  "emoji": "❄️",
+  "identified": true,
+  "note": null,
+  "history": "CMF Series 16 (71013, Sep 2016) - Ice Queen in an icy blue gown with translucent-blue crown, cape and ice-crystal sceptre.",
+  "inspiration": "A frosty fairy-tale monarch - the Snow Queen ruling her frozen realm.",
+  "type": "minifigure"
  }
 ]
