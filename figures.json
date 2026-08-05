@@ -2526,5 +2526,41 @@
     "history": "CMF Series 14 Monsters (71010, Sep 2015) - Square Foot, a shaggy reddish-brown Bigfoot with oversized furry feet, holding a banana.",
     "inspiration": "Bigfoot / Sasquatch - the legendary forest cryptid caught mid-stroll.",
     "type": "minifigure"
+  },
+  {
+    "name_th": "เจ้าหญิงคราวน์ (Fantasy Era)",
+    "name_en": "Crown Princess (Maiden)",
+    "series": "Castle (Fantasy Era)",
+    "set_no": "7079",
+    "release_date": "2007",
+    "release_sort": 20070105,
+    "category": "castle",
+    "bricklink_id": "cas333",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas333.png",
+    "confidence": "sure",
+    "emoji": "👸",
+    "identified": true,
+    "note": "BrickOwl BOID 609605",
+    "history": "Castle Fantasy Era (2007-2008) - the Crown Princess, or Maiden, of the Crown Knights kingdom, appearing in 7079 Drawbridge Defense and two other sets.",
+    "inspiration": "The fair maiden of the Crown Kingdom - counterpart to your Crown King with Cape (cas332).",
+    "type": "minifigure"
+  },
+  {
+    "name_th": "เจ้าหญิงสิงโต (Castle 2013)",
+    "name_en": "Lion Princess (The Princess)",
+    "series": "Castle (2013)",
+    "set_no": "70403",
+    "release_date": "2013",
+    "release_sort": 20130104,
+    "category": "castle",
+    "bricklink_id": "cas533",
+    "image_url": "https://img.bricklink.com/ItemImage/MN/0/cas533.png",
+    "confidence": "sure",
+    "emoji": "👸",
+    "identified": true,
+    "note": null,
+    "history": "Castle 2013 wave - The Princess, also known as the Lion Princess, from 70403 Dragon Mountain: dark red hair with a gold crown and a white gown with gold and blue trim.",
+    "inspiration": "The princess of the Lion Kingdom, rescued from Dragon Mountain.",
+    "type": "minifigure"
   }
 ]

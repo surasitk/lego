@@ -601,6 +601,10 @@ const CATORDER=['animal','hero','robot','food','plant','castle','pop','pirate','
 const catLabel=k=>CAT[k]?CAT[k].label:(k||'');
 const byOld=(a,b)=>a.release_sort-b.release_sort;
 const byName=(a,b)=>(a.name_en||a.name_th).localeCompare(b.name_en||b.name_th);
+// Castle: royalty first (Kings, then Queens, then Princesses) each by origin year, then everyone else as before.
+const royalRank=f=>{const n=(f.name_en||f.name_th||'');return /\bking\b/i.test(n)?0:/\bqueen\b/i.test(n)?1:/\bprincess\b/i.test(n)?2:3;};
+const byCastle=(a,b)=>royalRank(a)-royalRank(b)||byOld(a,b);
+const sorterFor=k=>k==='castle'?byCastle:byOld;
 function filtered(){
   const q=query?query.toLowerCase():null;
   const match=f=>!q||[f.name_en,f.name_th,f.series,f.set_no,f.bricklink_id].filter(Boolean).some(x=>x.toLowerCase().includes(q));
@@ -616,11 +620,11 @@ function filtered(){
   else if(cat==='all'){
     const main=CATORDER.filter(k=>!sc.has(k));
     const out=[];
-    main.forEach(k=>out.push(...figs.filter(f=>f.category===k).sort(byOld)));
+    main.forEach(k=>out.push(...figs.filter(f=>f.category===k).sort(sorterFor(k))));
     const rest=figs.filter(f=>!main.includes(f.category)).sort((a,b)=>catLabel(a.category).localeCompare(catLabel(b.category))||byOld(a,b));
     list=out.concat(rest).concat(sets).concat(books);
   }
-  else list=figs.filter(f=>f.category===cat).sort(byOld);
+  else list=figs.filter(f=>f.category===cat).sort(sorterFor(cat));
   if(view==='timeline') list=[...list].sort((a,b)=>byOld(a,b)||byName(a,b));
   return list;
 }
