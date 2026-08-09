@@ -2940,5 +2940,23 @@
   "type": "minifigure",
   "history": "CMF Series 6 (8827, 2012) - the Minotaur, a reddish-brown bull-headed warrior with white horns, a moulded shaggy mane, Greek-key patterned kilt and a double-bladed axe.",
   "inspiration": "The Minotaur of Greek myth - the bull-man at the heart of the Cretan labyrinth."
+ },
+ {
+  "name_th": "ฟอน (ซีรีส์ 15)",
+  "name_en": "Faun",
+  "series": "Series 15",
+  "set_no": "71011",
+  "release_date": "2016",
+  "release_sort": 20160101,
+  "category": "animal",
+  "bricklink_id": "col234",
+  "image_url": "https://surasitk.github.io/lego/img/wish/col234-faun.jpg",
+  "confidence": "sure",
+  "emoji": "🐐",
+  "identified": true,
+  "note": null,
+  "type": "minifigure",
+  "history": "CMF Series 15 (71011, 2016) - the Faun, a goat-legged woodland spirit with curled horns, pointed ears and a set of pan pipes.",
+  "inspiration": "The faun of Greek and Roman myth - half man, half goat, always with a flute."
  }
 ]
