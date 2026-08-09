@@ -2922,5 +2922,23 @@
   "type": "minifigure",
   "history": "LEGO Minifigures Shrek Series (71053, Sep 2026) - Fairy Godmother's vain son, would-be husband to Fiona and villain of Shrek the Third.",
   "inspiration": "All hair, no charm."
+ },
+ {
+  "name_th": "มิโนทอร์ (ซีรีส์ 6)",
+  "name_en": "Minotaur",
+  "series": "Series 6",
+  "set_no": "8827",
+  "release_date": "2012",
+  "release_sort": 20120101,
+  "category": "animal",
+  "bricklink_id": "col088",
+  "image_url": "https://surasitk.github.io/lego/img/wish/col088-minotaur.jpg",
+  "confidence": "sure",
+  "emoji": "🐂",
+  "identified": true,
+  "note": null,
+  "type": "minifigure",
+  "history": "CMF Series 6 (8827, 2012) - the Minotaur, a reddish-brown bull-headed warrior with white horns, a moulded shaggy mane, Greek-key patterned kilt and a double-bladed axe.",
+  "inspiration": "The Minotaur of Greek myth - the bull-man at the heart of the Cretan labyrinth."
  }
 ]
